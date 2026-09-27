@@ -263,68 +263,92 @@ No dejar folletos en portales, vehículos o mobiliario sin permiso. Para empezar
 es mejor pedir colaboración a comercios, administradores de fincas, mudanzas y
 negocios cercanos.
 
-## 9. Experimento de validación en 14 días
+## 9. Experimento de validación en 2 meses
 
-### Días 1–2: cerrar la oferta
+### Semana 1: cerrar la oferta
 
 - Confirmar inventario, precios, condiciones, acceso y contacto.
 - Conseguir fotos reales.
 - Elegir una sola conversión: WhatsApp, llamada o formulario.
 
-### Días 3–4: publicar la landing útil
+### Semana 2: publicar la landing útil
 
 - Cambiar el contenido de ejemplo por datos reales.
 - Crear la página local de Casablanca.
 - Añadir FAQ, mapa o indicaciones solo si son correctos.
 - Instalar medición de visitas, clics y contactos.
 
-### Días 5–7: conversaciones
+### Semanas 2–3: conversaciones
 
 - Hablar con al menos 10 personas de los segmentos elegidos.
 - Preguntar por el problema actual, no por si «les gusta la idea».
 - Registrar presupuesto, urgencia, tamaño y objeciones.
 
-### Días 8–11: tráfico local
+### Semanas 3–4: primer tráfico local
 
 - Lanzar los dos flyers con QR distintos.
 - Publicar en perfiles y comunidades donde esté permitido.
 - Pedir a negocios cercanos que compartan la oferta si encaja.
 
-### Días 12–14: decisión
+### Semanas 5–8: optimizar y validar reservas
 
 - Contactar rápido con cada lead.
 - Ofrecer visita o reserva si existe inventario real.
-- Calcular coste por lead y coste por reserva.
-- Decidir: continuar, cambiar oferta, cambiar segmento o parar.
+- Repetir los flyers con el mensaje que mejor convierta.
+- Probar una segunda zona o segmento solo si la primera medición es fiable.
+- Publicar las preguntas reales que se repitan en las conversaciones.
+- Recoger reseñas únicamente de clientes reales.
+- Calcular semanalmente coste por lead, coste por visita y coste por reserva.
+- Comparar la demanda entre las ocho semanas, no solo el mejor día.
+
+### Cadencia semanal
+
+Cada semana se debe registrar:
+
+- visitas a la landing por canal;
+- clics en WhatsApp y llamadas;
+- contactos cualificados;
+- tiempo de respuesta;
+- visitas al espacio;
+- reservas y motivos de pérdida;
+- gasto por canal;
+- disponibilidad real y días hasta ocupar cada unidad.
+
+Cada lunes se mantiene una sola hipótesis principal. Cada viernes se decide qué
+mensaje, canal o condición se conserva, cambia o elimina.
 
 ## 10. Métricas y umbrales de decisión
 
 Son umbrales iniciales de trabajo, no leyes del mercado.
 
-- **Interés:** al menos 100 visitas locales cualificadas.
-- **Conversión:** objetivo de referencia del 5 % de visita a contacto.
+- **Interés:** al menos 300 visitas locales cualificadas acumuladas en dos meses.
+- **Conversión:** objetivo de referencia del 5 % de visita a contacto, comparando
+  semanas y canales.
 - **Calidad:** más de la mitad de los contactos deben encajar con ubicación,
   tamaño y presupuesto.
 - **Velocidad:** responder en menos de 15 minutos durante el horario definido.
-- **Negocio:** conseguir al menos una reserva o varias conversaciones con fecha
-  de decisión en las dos primeras semanas.
+- **Negocio:** conseguir reservas reales o una cartera clara de conversaciones
+  con fecha de decisión antes de terminar el segundo mes.
 - **Rentabilidad:** el coste de captación debe ser inferior al margen que deja
-  el cliente durante el periodo mínimo de permanencia.
+  el cliente durante el periodo mínimo de permanencia. Calcularlo con datos de
+  las ocho semanas, no con una campaña aislada.
 
 Si hay clics pero nadie deja sus datos, falla la oferta o la confianza. Si hay
 contactos pero nadie reserva, falla el precio, la disponibilidad o la operación.
-No se arregla publicando más artículos.
+Si una semana funciona y las siguientes no, todavía no hay validación. No se
+arregla publicando más artículos.
 
 ## 11. Decisión recomendada
 
-Primero validar una ubicación y una oferta. Después invertir en autoridad local.
+Primero validar una ubicación y una oferta durante dos meses. Después invertir
+en autoridad local.
 
 El orden correcto es:
 
 1. Confirmar que el espacio se puede comercializar.
 2. Confirmar qué se vende y a qué precio.
-3. Conseguir los primeros contactos con landing, WhatsApp y flyers medibles.
-4. Convertir contactos en visitas y reservas.
+3. Conseguir contactos de forma sostenida con landing, WhatsApp y flyers medibles.
+4. Convertir contactos en visitas y reservas durante varias semanas.
 5. Recoger reseñas reales y fotografías propias.
 6. Escalar SEO local y contenido GEO con datos actualizados.
 
