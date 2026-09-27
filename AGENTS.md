@@ -20,3 +20,10 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+## Copywriting
+
+Before writing or editing any user-facing text, read
+[docs/copywriting-style.md](docs/copywriting-style.md) and follow its rules.
+This includes page copy, UI labels, buttons, forms, errors, emails, ads, and SEO
+metadata.
