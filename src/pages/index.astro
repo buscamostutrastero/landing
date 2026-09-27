@@ -1,45 +1,150 @@
 ---
 import '../styles/global.css';
+import { ArrowDown, ArrowUpRight, CheckCircle2, ChevronDown, MapPin, Package, Phone, UserRound } from 'lucide-react';
+import { HugeiconsIcon } from '@hugeicons/react';
+import { Calendar01Icon, Home04Icon, PackageMoving01Icon, PackageSearch01Icon, Store01Icon, TaskAdd02Icon } from '@hugeicons/core-free-icons';
 
 const faqs = [
-  ['¿Dónde están los trasteros?', 'Estamos validando la primera ubicación en Calle de las Rosas 16, Casablanca, Zaragoza. Te confirmaremos la disponibilidad real antes de avanzar.'],
-  ['¿Qué tamaños hay?', 'Depende de la disponibilidad. Cuéntanos qué quieres guardar y te diremos qué espacio encaja mejor.'],
-  ['¿Cuánto cuesta?', 'Te confirmaremos el precio actual, la fianza y las condiciones antes de reservar. Sin sorpresas.'],
-  ['¿Puedo visitarlo antes de decidir?', 'Sí, si la unidad está disponible para visita. Primero hablamos y coordinamos el siguiente paso.'],
+  ['¿Dónde vais a abrir?', 'En Calle de las Rosas 16, en Casablanca, Zaragoza. Ahí abrimos nuestros trasteros.'],
+  ['¿Cuándo abrís?', 'La apertura está en marcha. La fecha todavía no está cerrada. Si necesitas espacio, cuéntanos para cuándo.'],
+  ['¿Cuánto va a costar?', 'Todavía no hemos publicado las tarifas. El precio, la fianza y las condiciones estarán claros antes de que contrates.'],
+  ['¿Qué tamaño necesito?', 'Empieza por las cosas: cuántas cajas, qué muebles, si hay una bici… No hace falta que calcules los metros a ojo. Cuéntanos qué quieres guardar; los tamaños se publicarán con la oferta de apertura.'],
+  ['¿Dejar mis datos es reservar?', 'No. Nos sirve para hablar de lo que necesitas. No estás contratando ni pagando nada.'],
 ];
 ---
 
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/webp" href="/favicon.webp" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content="Consulta disponibilidad de trasteros cerca de Calle de las Rosas 16, en Casablanca, Zaragoza." />
+    <meta name="description" content="Abrimos trasteros en Calle de las Rosas 16, Casablanca, Zaragoza. Deja de mover las cajas de un lado a otro. Cuéntanos qué necesitas guardar." />
     <link rel="canonical" href="https://buscamostutrastero.com/" />
-    <title>Trasteros en Casablanca, Zaragoza | Buscamos tu Trastero</title>
+    <title>Trasteros en Casablanca, Zaragoza · Próxima apertura | Buscamos tu Trastero</title>
   </head>
   <body>
+    <a class="skip-link" href="#contenido">Ir al contenido</a>
     <div class="site-shell">
-      <div class="topbar"><div class="container topbar-inner"><span class="topbar-dot"></span><span>Primera ubicación en validación · Casablanca, Zaragoza</span></div></div>
+      <div class="topbar">
+        <div class="container topbar-inner">
+          <MapPin aria-hidden="true" size={15} strokeWidth={2} />
+          <span>Próxima apertura · Casablanca, Zaragoza</span>
+        </div>
+      </div>
 
-      <header class="site-header"><div class="container nav"><a class="brand" href="#inicio" aria-label="Buscamos tu Trastero, inicio"><img src="/brand/logo.webp" alt="Buscamos tu Trastero" /></a><nav class="nav-links" aria-label="Navegación principal"><a href="#como-funciona">Cómo funciona</a><a href="#ubicacion">Ubicación</a><a href="#preguntas">Preguntas</a></nav><a class="button button-dark" href="#contacto"><span>Consultar disponibilidad</span><span aria-hidden="true">↗</span></a></div></header>
+      <header class="site-header">
+        <div class="container nav">
+          <a class="brand" href="#inicio" aria-label="Buscamos tu Trastero, inicio"><img src="/brand/logo.webp" width="1260" height="380" alt="Buscamos tu Trastero" /></a>
+          <nav class="nav-links" aria-label="Navegación principal">
+            <a href="#como-funciona">Cómo empezar</a>
+            <a href="#ubicacion">Ubicación</a>
+            <a href="#preguntas">Preguntas</a>
+          </nav>
+          <a class="button button-dark" href="#contacto" aria-label="Me interesa un trastero"><span>Me interesa un trastero</span><ArrowUpRight aria-hidden="true" size={17} strokeWidth={2.25} /></a>
+        </div>
+      </header>
 
-      <main>
-        <section class="hero" id="inicio"><div class="container hero-grid"><div class="hero-copy"><div class="eyebrow">Trasteros en Casablanca</div><h1 class="display">Tu casa necesita espacio.<br /><span style="color:#c48200">Tus cosas también.</span></h1><p>Encuentra un trastero cerca de ti y deja de hacer malabares con cajas, muebles y todo eso que «ya colocarás algún día».</p><div class="hero-actions"><a class="button button-primary" href="#contacto">Consultar disponibilidad <span aria-hidden="true">↗</span></a><a class="button button-ghost" href="#como-funciona">Ver cómo funciona <span aria-hidden="true">↓</span></a></div><div class="hero-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg> Calle de las Rosas 16 · Zaragoza</div></div><div class="hero-media"><img src="/images/storage-hero.webp" alt="Trastero ordenado con cajas y espacio para guardar muebles" loading="eager" fetchpriority="high" /><div class="hero-tag"><span class="pin"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span><strong>Casablanca, Zaragoza</strong><span>Primera zona de prueba</span></span></div></div></div></section>
+      <main id="contenido" tabindex="-1">
+        <section class="hero" id="inicio">
+          <div class="container hero-grid">
+            <div class="hero-copy">
+              <div class="eyebrow">Abrimos trasteros en Casablanca</div>
+              <h1 class="display"><span class="hero-heading-line">Has ordenado otra vez.</span> <span class="accent-heading hero-heading-line">Sigue sin caber una mierda.</span></h1>
+              <p>Cambias las cajas de habitación. Empujas la bici contra la pared. Cierras el armario haciendo fuerza. Ya has hecho hueco demasiadas veces.</p>
+              <p>Abrimos trasteros en Calle de las Rosas 16, Casablanca, Zaragoza. Para guardar lo que quieres conservar y dejar de vivir esquivándolo.</p>
+              <div class="hero-actions">
+                <a class="button button-primary" href="#contacto"><span>Me interesa un trastero</span><span class="button-icon"><ArrowUpRight aria-hidden="true" size={18} strokeWidth={2.25} /></span></a>
+                <a class="button button-ghost" href="#como-funciona"><span>Cómo empezar</span><span class="button-icon button-icon-ghost"><ArrowDown aria-hidden="true" size={18} strokeWidth={2.25} /></span></a>
+              </div>
+              <div class="hero-note"><span class="hero-note-icon"><MapPin aria-hidden="true" size={16} strokeWidth={2} /></span><span>Calle de las Rosas 16 · Zaragoza</span></div>
+            </div>
+            <div class="hero-media">
+              <img src="/images/storage-hero.webp" width="1536" height="1024" alt="Trastero ordenado con cajas y espacio para guardar muebles" loading="eager" fetchpriority="high" />
+              <div class="hero-tag"><span class="hero-tag-icon"><MapPin aria-hidden="true" size={20} strokeWidth={2.1} /></span><span class="hero-tag-copy"><strong>Casablanca, Zaragoza</strong><span>Próxima apertura</span></span></div>
+            </div>
+          </div>
+        </section>
 
-        <div class="proof-strip"><div class="container proof-items"><div class="proof-item"><span class="topbar-dot"></span> Cerca de tu barrio</div><div class="proof-item"><span class="topbar-dot"></span> Precio y condiciones claros</div><div class="proof-item"><span class="topbar-dot"></span> Respuesta directa</div></div></div>
+        <div class="proof-strip">
+          <div class="container proof-items">
+            <div class="proof-item"><CheckCircle2 aria-hidden="true" size={17} strokeWidth={2} /> Recupera tu habitación</div>
+            <div class="proof-item"><CheckCircle2 aria-hidden="true" size={17} strokeWidth={2} /> Deja libre el pasillo</div>
+            <div class="proof-item"><CheckCircle2 aria-hidden="true" size={17} strokeWidth={2} /> Conserva lo que quieres</div>
+          </div>
+        </div>
 
-        <section class="section" id="como-funciona"><div class="container split"><div class="media-card"><img src="/images/storage-organized.webp" alt="Cajas y objetos organizados dentro de un trastero" loading="lazy" /><span class="media-label">Más espacio. Menos ruido.</span></div><div class="copy-stack"><div class="eyebrow">El problema es bastante sencillo</div><h2 class="section-title">No necesitas otra casa. Necesitas unos metros bien puestos.</h2><p>Cajas en el pasillo. Muebles ocupando una habitación. Cosas que no usas, pero tampoco quieres tirar. Te ayudamos a encontrar un sitio para guardarlo todo cerca de ti.</p><div class="number-list"><div class="number-item"><span class="number">1</span><span><strong>Cuéntanos qué necesitas guardar</strong><span>Con cajas, muebles o una idea aproximada nos basta.</span></span></div><div class="number-item"><span class="number">2</span><span><strong>Te confirmamos las opciones</strong><span>Tamaño, precio y condiciones. Todo antes de decidir.</span></span></div><div class="number-item"><span class="number">3</span><span><strong>Eliges el siguiente paso</strong><span>Visita, reserva o simplemente lo dejas para más adelante.</span></span></div></div></div></div></section>
+        <section class="section" id="como-funciona">
+          <div class="container split">
+            <div class="media-card"><img src="/images/storage-organized.webp" width="1122" height="1402" alt="Cajas y objetos organizados dentro de un trastero" loading="lazy" /><span class="media-label">Que quepan tus cosas. Y tú.</span></div>
+            <div class="copy-stack">
+              <div class="eyebrow">Ordenar tiene un límite</div>
+              <h2 class="section-title">Moverlo de sitio no hace que ocupe menos.</h2>
+              <p>El domingo ordenas. El lunes vuelves a sacar la bici para llegar al armario. Y esa habitación que ibas a usar de despacho sigue llena de cajas. Tus cosas necesitan un sitio que no tengas que despejar cada dos días.</p>
+              <div class="number-list" aria-label="Cómo contarnos lo que necesitas">
+                <article class="number-item"><span class="number">01</span><span class="step-icon"><HugeiconsIcon icon={PackageSearch01Icon} aria-hidden="true" size={21} strokeWidth={1.8} /></span><div class="step-copy"><strong>Dinos qué no te cabe</strong><span>Cajas, una bici, el sofá de tu madre. Una lista aproximada nos vale.</span></div></article>
+                <article class="number-item"><span class="number">02</span><span class="step-icon"><HugeiconsIcon icon={TaskAdd02Icon} aria-hidden="true" size={21} strokeWidth={1.8} /></span><div class="step-copy"><strong>Cuéntanos para cuándo</strong><span>Una mudanza en noviembre o un pasillo que ya no aguantas. Dinos tu plazo.</span></div></article>
+                <article class="number-item"><span class="number">03</span><span class="step-icon"><HugeiconsIcon icon={Calendar01Icon} aria-hidden="true" size={21} strokeWidth={1.8} /></span><div class="step-copy"><strong>Déjanos cómo contactar</strong><span>Un teléfono para hablar de lo que necesitas. Sin contratar nada todavía.</span></div></article>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        <section class="section section-soft"><div class="container"><div class="section-heading"><div class="eyebrow">¿Para qué lo necesitas?</div><h2 class="section-title">Cada trastero empieza con un problema distinto.</h2><p>La solución cambia. La pregunta es la misma: ¿cuánto espacio te hace falta?</p></div><div class="cards"><article class="card"><div class="card-icon"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v16"/><path d="M7 21v-5h10v5M7 7h.01M11 7h.01M15 7h.01M7 11h.01M11 11h.01M15 11h.01"/></svg></div><div><h3>Liberar tu casa</h3><p>Recupera una habitación, el trastero de casa o ese rincón que ya no puedes ni abrir.</p></div></article><article class="card"><div class="card-icon"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 16 5-5 4 4 5-6 4 4"/><path d="M3 3v18h18"/></svg></div><div><h3>Mudanza o reforma</h3><p>Guarda tus muebles durante unas semanas o unos meses. Sin convertir el salón en un almacén.</p></div></article><article class="card"><div class="card-icon"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V8l8-4 8 4v12"/><path d="M8 20v-6h8v6M4 9h16"/></svg></div><div><h3>Tu pequeño negocio</h3><p>Stock, material o herramientas sin ocupar el espacio donde trabajas cada día.</p></div></article></div></div></section>
+        <section class="section section-soft">
+          <div class="container">
+            <div class="section-heading"><div class="eyebrow">Lo que ya no cabe</div><h2 class="section-title">Todo tiene su sitio. Hasta que no lo tiene.</h2><p>Lo quieres conservar. Lo vas a necesitar. O aún no has decidido qué hacer con ello. Mientras tanto, te está comiendo la casa.</p></div>
+            <div class="cards">
+              <article class="card"><div class="card-icon"><HugeiconsIcon icon={Home04Icon} aria-hidden="true" size={25} strokeWidth={1.75} /></div><div><h3>La habitación de las cajas</h3><p>Iba a ser un despacho. O un cuarto para invitados. Ahora abres la puerta, miras las cajas y vuelves a cerrar. Esa habitación también la pagas.</p></div></article>
+              <article class="card"><div class="card-icon"><HugeiconsIcon icon={PackageMoving01Icon} aria-hidden="true" size={25} strokeWidth={1.75} /></div><div><h3>La mudanza que no termina</h3><p>Tienes que vaciar el piso y todavía no puedes entrar en el siguiente. El sofá no se encoge. Y en casa de tus padres tampoco cabe.</p></div></article>
+              <article class="card"><div class="card-icon"><HugeiconsIcon icon={Store01Icon} aria-hidden="true" size={25} strokeWidth={1.75} /></div><div><h3>El stock llega hasta el salón</h3><p>La mercancía en el pasillo. Las herramientas debajo de la mesa. Cada pedido trae otra caja. Tu negocio crece; tu casa sigue midiendo lo mismo.</p></div></article>
+            </div>
+          </div>
+        </section>
 
-        <section class="section location" id="ubicacion"><div class="container location-grid"><div><div class="eyebrow">Primera ubicación en validación</div><h2>Calle de las Rosas 16, Casablanca.</h2><p>Estamos comprobando la demanda real de trasteros en esta zona de Zaragoza. Si buscas espacio cerca, déjanos tus datos y te confirmamos qué hay disponible.</p><div class="location-detail"><span class="pin"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><span>Casablanca · Zaragoza</span></div><div class="location-image"><img src="/images/moving-boxes.webp" alt="Cajas preparadas para una mudanza en Zaragoza" loading="lazy" /></div></div><div class="contact-card" id="contacto"><h3>Cuéntanos qué necesitas</h3><p>Te responderemos con disponibilidad, precio y condiciones actuales.</p><form class="form-grid" action="mailto:admin@buscamostutrastero.com" method="post" enctype="text/plain"><label class="field"><span class="form-label">Nombre</span><input name="name" autocomplete="name" placeholder="Tu nombre" required /></label><label class="field"><span class="form-label">WhatsApp o teléfono</span><input name="phone" autocomplete="tel" placeholder="600 000 000" required /></label><label class="field"><span class="form-label">¿Qué quieres guardar?</span><textarea name="need" placeholder="Cajas, muebles, material..."></textarea></label><button class="button button-primary form-submit" type="submit">Quiero consultar disponibilidad ↗</button></form><p class="form-footnote">Sin compromiso. Estamos validando esta primera ubicación.</p></div></div></section>
+        <section class="section location" id="ubicacion">
+          <div class="container location-grid">
+            <div>
+              <div class="eyebrow">Aquí abrimos</div>
+              <h2>Tus cosas, en Las Rosas 16. Tu casa, para ti.</h2>
+              <p>Abrimos trasteros en Calle de las Rosas 16, en Casablanca, Zaragoza. Para esas cosas que quieres tener cerca, pero que no necesitas ver cada vez que cruzas el salón.</p>
+              <div class="location-detail"><span class="pin"><MapPin aria-hidden="true" size={17} strokeWidth={2} /></span><span>Calle de las Rosas 16 · Casablanca, Zaragoza</span></div>
+              <div class="location-image"><img src="/images/moving-boxes.webp" width="1448" height="1086" alt="Cajas preparadas para una mudanza" loading="lazy" /></div>
+            </div>
+            <div class="contact-card" id="contacto">
+              <h3>¿Qué sacarías de casa hoy?</h3><p>Cuéntanos qué necesitas guardar y para cuándo. Déjanos un teléfono para hablarlo contigo.</p>
+              <form class="form-grid" action="mailto:admin@buscamostutrastero.com" method="post" enctype="text/plain">
+                <label class="field"><span class="form-label">Nombre</span><span class="field-control"><UserRound aria-hidden="true" size={17} strokeWidth={2} /><input name="name" autocomplete="name" placeholder="Tu nombre" required /></span></label>
+                <label class="field"><span class="form-label">WhatsApp o teléfono</span><span class="field-control"><Phone aria-hidden="true" size={17} strokeWidth={2} /><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="600 000 000" required /></span></label>
+                <label class="field"><span class="form-label">¿Qué necesitas guardar y para cuándo?</span><span class="field-control field-control-textarea"><Package aria-hidden="true" size={17} strokeWidth={2} /><textarea name="need" placeholder="Una bici, unas 10 cajas y un sofá. Lo necesito para noviembre."></textarea></span></label>
+                <div class="form-privacy"><strong>Información básica sobre protección de datos</strong><span>Responsable: titular de este sitio. Finalidad: responder a tu consulta. Legitimación: tu consentimiento. Destinatarios: no se cederán datos salvo obligación legal. Derechos: consulta la <a href="/politica-privacidad/">Política de privacidad</a>.</span></div>
+                <label class="privacy-consent"><input type="checkbox" required /><span>He leído la <a href="/politica-privacidad/">Política de privacidad</a>.</span></label>
+                <button class="button button-primary form-submit" type="submit" aria-describedby="contact-help">Preparar mi consulta <ArrowUpRight aria-hidden="true" size={18} strokeWidth={2.25} /></button>
+              </form>
+              <p class="form-footnote" id="contact-help">Se abrirá tu aplicación de correo para que envíes la consulta. No estás haciendo una reserva.</p>
+            </div>
+          </div>
+        </section>
 
-        <section class="section" id="preguntas"><div class="container"><div class="section-heading"><div class="eyebrow">Preguntas frecuentes</div><h2 class="section-title">Lo que quieres saber antes de escribir.</h2></div><div class="faq-list">{faqs.map(([question, answer]) => <details><summary>{question}</summary><p>{answer}</p></details>)}</div></div></section>
+        <section class="section" id="preguntas">
+          <div class="container">
+            <div class="section-heading"><div class="eyebrow">Preguntas frecuentes</div><h2 class="section-title">Al grano: dónde, cuándo y cuánto.</h2></div>
+            <div class="faq-list">{faqs.map(([question, answer]) => <details><summary><span>{question}</span><ChevronDown className="faq-chevron" aria-hidden="true" size={20} strokeWidth={2} /></summary><p>{answer}</p></details>)}</div>
+          </div>
+        </section>
       </main>
 
-      <footer class="site-footer"><div class="container footer-inner"><div class="footer-brand">Buscamos tu <span>Trastero</span></div><div class="footer-copy">© {new Date().getFullYear()} Buscamos tu Trastero · Zaragoza</div></div></footer>
+      <footer class="site-footer">
+        <div class="container footer-main">
+          <div><div class="footer-brand">Buscamos tu <span>Trastero</span></div><p class="footer-description">Abrimos en Casablanca. Para que vuelvas a tener sitio en casa.</p><a class="footer-contact" href="mailto:admin@buscamostutrastero.com">admin@buscamostutrastero.com</a></div>
+          <nav class="footer-nav" aria-label="Navegación del sitio"><strong>Explora</strong><a href="#como-funciona">Cómo empezar</a><a href="#ubicacion">Ubicación</a><a href="#preguntas">Preguntas frecuentes</a></nav>
+          <nav class="footer-nav" aria-label="Información legal"><strong>Legal</strong><a href="/aviso-legal/">Aviso legal</a><a href="/politica-privacidad/">Privacidad</a><a href="/politica-cookies/">Cookies</a></nav>
+        </div>
+        <div class="container footer-bottom"><span>© {new Date().getFullYear()} Buscamos tu Trastero</span><span>Todos los derechos reservados.</span></div>
+      </footer>
     </div>
   </body>
 </html>

@@ -1,0 +1,21 @@
+---
+import '../styles/global.css';
+
+const { description, title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={`https://buscamostutrastero.com${Astro.url.pathname}`} />
+    <title>{title} | Buscamos tu Trastero</title>
+  </head>
+  <body>
+    <header class="legal-header"><div class="container"><a class="brand" href="/" aria-label="Buscamos tu Trastero, inicio"><img src="/brand/logo.webp" alt="Buscamos tu Trastero" /></a></div></header>
+    <main class="legal-page"><div class="container legal-container"><a class="legal-back" href="/">← Volver a la página principal</a><article class="legal-content"><slot /></article></div></main>
+    <footer class="site-footer"><div class="container footer-bottom legal-footer"><span>© {new Date().getFullYear()} Buscamos tu Trastero</span><nav aria-label="Información legal"><a href="/aviso-legal/">Aviso legal</a><a href="/politica-privacidad/">Privacidad</a><a href="/politica-cookies/">Cookies</a></nav></div></footer>
+  </body>
+</html>
