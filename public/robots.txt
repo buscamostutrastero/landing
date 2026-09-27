@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://buscamostutrastero.com/sitemap-index.xml
