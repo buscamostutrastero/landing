@@ -117,8 +117,9 @@ the launch.
 Secrets are runtime bindings (`context.env`), never embedded in the browser.
 Do not prefix them with `PUBLIC_` or commit `.dev.vars` to source control.
 
-Use port 465 for implicit TLS or 587 with required STARTTLS; certificate
-verification stays enabled. Restart the local preview after changing secrets;
+Use port 465 for implicit TLS through Cloudflare’s native socket API;
+certificate verification stays enabled. The socket is adapted to a Node stream
+for Nodemailer to handle authentication and SMTP, without Node TLS negotiation. Restart the local preview after changing secrets;
 Cloudflare Pages needs a new deployment after changing production bindings.
 The Node compatibility date/flag support Nodemailer's outgoing TLS sockets.
 Production SMTP bindings were saved in the Cloudflare dashboard on 3 October

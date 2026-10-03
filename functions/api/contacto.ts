@@ -61,7 +61,7 @@ export const onRequest = async ({ request, env }: { request: Request; env: Env }
   } catch { return respond(400, { ok: false, message: 'No se han podido leer los datos. Revisa la consulta e inténtalo de nuevo.' }); }
   const { SMTP_HOST: host, SMTP_USER: user, SMTP_PASS: pass, SMTP_PORT: portValue } = env;
   const port = Number(portValue || 465);
-  const configured = host && user === business.email && pass && [465, 587].includes(port);
+  const configured = host && user === business.email && pass && port === 465;
   const transport = configured ? nodemailer.createTransport({ host, port, secure: port === 465, requireTLS: true, getSocket: getSmtpSocket, auth: { user, pass }, connectionTimeout: 10000, greetingTimeout: 10000, socketTimeout: 15000 }) : null;
   const result = await submitInquiry(input, {
     recipient: business.email,
