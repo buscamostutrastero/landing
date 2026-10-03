@@ -2,6 +2,7 @@ import nodemailer from 'nodemailer';
 import { business } from '../../src/lib/business';
 import { storageSizes } from '../../src/lib/storage-content';
 import { submitInquiry } from '../../src/lib/inquiry.mjs';
+import { getSmtpSocket } from '../../src/lib/smtp-socket';
 
 interface Env {
   SMTP_HOST?: string;
@@ -61,7 +62,7 @@ export const onRequest = async ({ request, env }: { request: Request; env: Env }
   const { SMTP_HOST: host, SMTP_USER: user, SMTP_PASS: pass, SMTP_PORT: portValue } = env;
   const port = Number(portValue || 465);
   const configured = host && user === business.email && pass && [465, 587].includes(port);
-  const transport = configured ? nodemailer.createTransport({ host, port, secure: port === 465, requireTLS: true, auth: { user, pass }, connectionTimeout: 10000, greetingTimeout: 10000, socketTimeout: 15000 }) : null;
+  const transport = configured ? nodemailer.createTransport({ host, port, secure: port === 465, requireTLS: true, getSocket: getSmtpSocket, auth: { user, pass }, connectionTimeout: 10000, greetingTimeout: 10000, socketTimeout: 15000 }) : null;
   const result = await submitInquiry(input, {
     recipient: business.email,
     sizes: storageSizes.map(({ size }) => size),
