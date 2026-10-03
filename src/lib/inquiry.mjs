@@ -47,7 +47,7 @@ export async function submitInquiry(input, { sizes, recipient, sendMail }) {
     if (!result.accepted?.some((address) => (typeof address === 'string' ? address : address.address)?.toLowerCase() === recipient.toLowerCase())) throw new Error('Recipient not accepted');
     return { status: 200, body: { ok: true, message: 'Tu consulta se ha enviado.' } };
   } catch (error) {
-    const knownCodes = ['EAUTH', 'ETIMEDOUT', 'ECONNECTION', 'ESOCKET', 'EDNS', 'EMESSAGE', 'EENVELOPE'];
+    const knownCodes = ['EAUTH', 'ETIMEDOUT', 'ECONNECTION', 'ESOCKET', 'EDNS', 'EMESSAGE', 'EENVELOPE', 'ETLS', 'EREQUIRETLS', 'EPROTOCOL', 'ESTREAM', 'ENOAUTH', 'ECONFIG'];
     const deliveryCode = knownCodes.includes(error?.code) ? error.code : 'SMTP_FAILURE';
     console.error('Contact delivery failed', deliveryCode);
     return { status: 502, deliveryCode, body: { ok: false, message: `No se ha podido confirmar el envío. Tus datos siguen aquí. Puedes reintentar o escribir a ${recipient}.` } };
