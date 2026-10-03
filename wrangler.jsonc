@@ -3,5 +3,12 @@
   "name": "landing",
   "pages_build_output_dir": "./dist",
   "compatibility_date": "2026-09-27",
-  "compatibility_flags": ["nodejs_compat"]
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "vars": {
+    "SMTP_HOST": "smtppro.zoho.eu",
+    "SMTP_PORT": "465",
+    "SMTP_USER": "contacto@buscamostutrastero.com"
+  }
 }

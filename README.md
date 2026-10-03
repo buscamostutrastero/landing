@@ -108,9 +108,11 @@ Missing credentials return HTTP 503; errors preserve the visitor's form values.
 
 For local mail tests, copy `.env.example` to `.dev.vars`, configure the actual
 SMTP host shown in Zoho mailbox settings, the contacto user and its password or
-application password. In production enter `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`
-and secret `SMTP_PASS` in **Pages → landing → Settings → Variables and secrets**.
-Use the Preview environment for a preview test, and Production for the launch.
+application password. Production `SMTP_HOST`, `SMTP_PORT` and `SMTP_USER` are declared in
+`wrangler.jsonc`, the source of truth for non-secret runtime configuration.
+Enter only secret `SMTP_PASS` in **Pages → landing → Settings → Variables and
+secrets**. Use the Preview environment for a preview test, and Production for
+the launch.
 Secrets are runtime bindings (`context.env`), never embedded in the browser.
 Do not prefix them with `PUBLIC_` or commit `.dev.vars` to source control.
 
