@@ -8,7 +8,7 @@
   ],
   "vars": {
     "SMTP_HOST": "smtppro.zoho.eu",
-    "SMTP_PORT": "465",
+    "SMTP_PORT": "587",
     "SMTP_USER": "contacto@buscamostutrastero.com"
   }
 }
