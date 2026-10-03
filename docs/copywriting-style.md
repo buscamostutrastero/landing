@@ -173,8 +173,9 @@ En el formulario `/contacto/`:
   literalmente 356 hasta confirmar esa cifra; no sustituirla por 365 sin acuerdo.
 - No mostrar porcentaje de llenado: el cliente lo ha retirado por ahora.
 
-El envío real requiere credenciales SMTP y un despliegue con servidor. Está
-pendiente de configurar y comprobar la recepción en el buzón.
+El envío real está configurado en una Pages Function de Cloudflare. Zoho ha
+aceptado las consultas ficticias de prueba y la web muestra la confirmación
+solo tras esa aceptación. Falta comprobar la recepción en el buzón de contacto.
 
 ## 9. Ejemplos de criterio editorial
 

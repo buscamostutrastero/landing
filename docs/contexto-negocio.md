@@ -424,7 +424,9 @@ El cliente aporta acceso 24 horas durante 356 días, carga y descarga y vigilanc
 pendiente de confirmar; no se publica como horario de un centro ya abierto.
 El alojamiento se ha verificado: Cloudflare Pages, proyecto landing,
 landing-br9.pages.dev, conectado a main del repositorio; compilación pnpm run build
-y salida dist. El envío va por una Pages Function. Las credenciales SMTP y la
-recepción real del test siguen pendientes de configurar/verificar. No confundir las pruebas automatizadas con
+y salida dist. El envío va por una Pages Function. Las credenciales SMTP están
+configuradas; Zoho ha aceptado las consultas ficticias de prueba y se ha
+verificado la pantalla de éxito en la web publicada. La recepción en el buzón
+y el encabezado Reply-To siguen pendientes de verificar con acceso a contacto. No confundir las pruebas automatizadas con
 recepción de un correo real. La política de privacidad aún contiene datos del
 responsable pendientes de completar antes de publicar el flujo.

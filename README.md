@@ -121,10 +121,14 @@ Use port 465 for implicit TLS through Cloudflare’s native socket API;
 certificate verification stays enabled. The socket is adapted to a Node stream
 for Nodemailer to handle authentication and SMTP, without Node TLS negotiation. Restart the local preview after changing secrets;
 Cloudflare Pages needs a new deployment after changing production bindings.
-The Node compatibility date/flag support Nodemailer's outgoing TLS sockets.
+Node compatibility enables Nodemailer and its streams; Cloudflare native
+sockets handle outgoing TLS.
 Production SMTP bindings were saved in the Cloudflare dashboard on 3 October
 2026, including the password entered directly by the account owner as an
-encrypted secret. Authentication and inbox receipt still require a deployed test.
+encrypted secret. Zoho accepted two labelled fictitious enquiries on the deployed site on
+3 October 2026: one HTTP test and one browser submission showing the success
+screen. Actual receipt and Reply-To inspection in the contacto inbox remain
+pending mailbox access; SMTP acceptance alone does not prove inbox delivery.
 
 After `pnpm build`, run `pnpm test` for input validation, the fixed recipient,
 all sizes, SMTP failure handling and HTTP tests against the compiled Pages Function in the Cloudflare workerd runtime. The HTTP
