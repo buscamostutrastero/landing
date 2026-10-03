@@ -426,7 +426,13 @@ El alojamiento se ha verificado: Cloudflare Pages, proyecto landing,
 landing-br9.pages.dev, conectado a main del repositorio; compilación pnpm run build
 y salida dist. El envío va por una Pages Function. Las credenciales SMTP están
 configuradas; Zoho ha aceptado las consultas ficticias de prueba y se ha
-verificado la pantalla de éxito en la web publicada. La recepción en el buzón
-y el encabezado Reply-To siguen pendientes de verificar con acceso a contacto. No confundir las pruebas automatizadas con
-recepción de un correo real. La política de privacidad aún contiene datos del
-responsable pendientes de completar antes de publicar el flujo.
+verificado la pantalla de éxito en la web publicada. El titular ha confirmado
+la recepción en el buzón con una captura que muestra la prueba
+`PRUEBA FINAL WEB CF-031026-2300` y todos sus campos. La captura no muestra el
+encabezado Reply-To; su inspección directa sigue pendiente. No confundir las
+pruebas automatizadas con recepción de un correo real.
+
+El titular ha facilitado el nombre del responsable: Hector García Fernandez.
+Ya figura en el aviso legal y la política de privacidad. El NIF, el domicilio
+legal, los plazos de conservación y la información de proveedores siguen
+pendientes; estos textos conservan noindex y quedan fuera del sitemap.

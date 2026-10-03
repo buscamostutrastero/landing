@@ -127,8 +127,14 @@ Production SMTP bindings were saved in the Cloudflare dashboard on 3 October
 2026, including the password entered directly by the account owner as an
 encrypted secret. Zoho accepted two labelled fictitious enquiries on the deployed site on
 3 October 2026: one HTTP test and one browser submission showing the success
-screen. Actual receipt and Reply-To inspection in the contacto inbox remain
-pending mailbox access; SMTP acceptance alone does not prove inbox delivery.
+screen. The owner confirmed inbox receipt with a screenshot on 3 October 2026;
+the opened message matches browser test `PRUEBA FINAL WEB CF-031026-2300` and
+contains all submitted fields. The screenshot does not expose the Reply-To
+header, so direct header inspection remains unverified.
+
+The owner supplied the legal name `Hector García Fernandez`, now used in the
+legal notice and privacy policy. NIF, legal domicile and the remaining privacy
+details are still pending; legal pages remain noindex and outside the sitemap.
 
 After `pnpm build`, run `pnpm test` for input validation, the fixed recipient,
 all sizes, SMTP failure handling and HTTP tests against the compiled Pages Function in the Cloudflare workerd runtime. The HTTP

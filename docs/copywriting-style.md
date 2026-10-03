@@ -175,7 +175,12 @@ En el formulario `/contacto/`:
 
 El envío real está configurado en una Pages Function de Cloudflare. Zoho ha
 aceptado las consultas ficticias de prueba y la web muestra la confirmación
-solo tras esa aceptación. Falta comprobar la recepción en el buzón de contacto.
+solo tras esa aceptación. El titular ha confirmado la recepción con una captura
+que muestra la prueba `PRUEBA FINAL WEB CF-031026-2300` y todos sus campos.
+
+El nombre del responsable confirmado por el titular es Hector García Fernandez.
+El NIF, el domicilio legal y los demás detalles pendientes de privacidad deben
+confirmarse antes de dar los textos legales por completos.
 
 ## 9. Ejemplos de criterio editorial
 

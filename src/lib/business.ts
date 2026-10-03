@@ -1,5 +1,6 @@
 export const business = {
   name: 'Buscamos tu Trastero',
+  legalName: 'Hector García Fernandez',
   url: 'https://www.buscamostutrastero.com',
   email: 'contacto@buscamostutrastero.com',
   streetAddress: 'Calle de las Rosas 16',
