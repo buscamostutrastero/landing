@@ -16,8 +16,9 @@ export const onRequest = async ({ request, env }: { request: Request; env: Env }
   if (request.method !== 'POST') return new Response('Method not allowed', { status: 405, headers: { Allow: 'POST', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' } });
   const clientAddress = request.headers.get('CF-Connecting-IP') || 'local';
   const asJson = request.headers.get('accept')?.includes('application/json');
-  const respond = (status: number, body: { ok: boolean; message: string; errors?: Record<string, string> }) => {
-    const headers = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' };
+  const respond = (status: number, body: { ok: boolean; message: string; errors?: Record<string, string> }, deliveryCode?: string) => {
+    const headers: Record<string, string> = { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' };
+    if (deliveryCode) headers['X-Contact-Delivery-Code'] = deliveryCode;
     if (asJson) return Response.json(body, { status, headers });
     const errors = body.errors ? Object.values(body.errors).map((message) => `<li>${escape(message)}</li>`).join('') : '';
     return new Response(`<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Consulta · Buscamos tu Trastero</title><link rel="stylesheet" href="/contact-response.css"><main><h1>${body.ok ? 'Tu consulta se ha enviado.' : 'No se ha podido enviar la consulta.'}</h1><p>${escape(body.message)}</p>${errors ? `<ul>${errors}</ul>` : ''}<p>${body.ok ? 'Nos pondremos en contacto contigo. No has hecho una reserva ni un pago.' : 'Vuelve atrás en tu navegador para revisar los datos o escribe a nuestro correo.'}</p><a href="${body.ok ? '/' : '/contacto/'}">${body.ok ? 'Volver a la web' : 'Ir al formulario'}</a><p><a href="mailto:${business.email}">${business.email}</a></p></main></html>`, { status, headers: { ...headers, 'Content-Type': 'text/html; charset=utf-8' } });
@@ -67,5 +68,5 @@ export const onRequest = async ({ request, env }: { request: Request; env: Env }
     sendMail: transport ? (message: Parameters<typeof transport.sendMail>[0]) => transport.sendMail(message) : null,
   });
   transport?.close();
-  return respond(result.status, result.body);
+  return respond(result.status, result.body, result.deliveryCode);
 };

@@ -54,3 +54,16 @@ test('missing configuration, SMTP failure and recipient rejection never claim su
     assert.equal(result.body.ok, false);
   }
 });
+
+test('delivery diagnostics expose only known error codes, never SMTP details', async () => {
+  const result = await submitInquiry(input, { sizes, recipient, sendMail: async () => {
+    throw Object.assign(new Error('Private SMTP response and credential'), { code: 'EAUTH' });
+  } });
+  assert.equal(result.deliveryCode, 'EAUTH');
+  assert.ok(!JSON.stringify(result).includes('Private SMTP'));
+  const unknown = await submitInquiry(input, { sizes, recipient, sendMail: async () => {
+    throw { code: 'Private credential' };
+  } });
+  assert.equal(unknown.deliveryCode, 'SMTP_FAILURE');
+  assert.ok(!JSON.stringify(unknown).includes('Private credential'));
+});
