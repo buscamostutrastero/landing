@@ -1,7 +1,8 @@
 ---
 import '../styles/global.css';
+import Seo from '../components/Seo.astro';
 
-const { description, title } = Astro.props;
+const { description, title, noindex = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -9,9 +10,7 @@ const { description, title } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content={description} />
-    <link rel="canonical" href={`https://buscamostutrastero.com${Astro.url.pathname}`} />
-    <title>{title} | Buscamos tu Trastero</title>
+    <Seo title={`${title} | Buscamos tu Trastero`} {description} {noindex} />
   </head>
   <body>
     <header class="legal-header"><div class="container"><a class="brand" href="/" aria-label="Buscamos tu Trastero, inicio"><img src="/brand/logo.webp" alt="Buscamos tu Trastero" /></a></div></header>

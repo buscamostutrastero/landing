@@ -1,0 +1,38 @@
+---
+import { business } from '../lib/business';
+
+interface Props {
+  title: string;
+  description: string;
+  structuredData?: Record<string, unknown>;
+  markdownPath?: string;
+  noindex?: boolean;
+}
+
+const { title, description, structuredData, markdownPath, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, business.url).href;
+const image = new URL('/images/storage-hero.webp', business.url).href;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
+{markdownPath && <link rel="alternate" type="text/markdown" href={new URL(markdownPath, business.url).href} title="Información comercial en Markdown" />}
+{markdownPath && <link rel="describedby" type="text/plain" href={`${business.url}/llms.txt`} />}
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="es_ES" />
+<meta property="og:site_name" content={business.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={image} />
+<meta property="og:image:width" content="1536" />
+<meta property="og:image:height" content="1024" />
+<meta property="og:image:alt" content="Ilustración de un trastero organizado con cajas y muebles" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<meta name="twitter:image:alt" content="Ilustración de un trastero organizado con cajas y muebles" />
+{structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, '\\u003c')} />}

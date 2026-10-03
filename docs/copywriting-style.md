@@ -88,6 +88,15 @@ La información práctica la hace creíble: trasteros, dirección y contacto.
 | Contacto | Recoger la necesidad y una forma de hablar con la persona. No equivale a reservar. |
 | Disponibilidad | No inventar unidades libres, «últimas plazas» ni prioridad de acceso. |
 
+**Tamaños confirmados para la apertura (3 de octubre de 2026):** 1, 1,5, 2,
+2,5, 3 y 3,5 m². Todos se ofrecerán cuando abramos. Las imágenes aportadas
+son ilustraciones generadas con IA para mostrar ejemplos de organización;
+no son fotografías del local ni garantizan la capacidad para objetos concretos.
+
+**Correo público:** `contacto@buscamostutrastero.com`. Formularios,
+enlaces de contacto y metadatos deben usar el mismo destinatario, definido en
+`src/lib/business.ts`. Buzón activo en Zoho, verificado el 3 de octubre de 2026.
+
 No convertir el hero en una lista de cosas pendientes. Ahí van el problema, la
 apertura y la acción. Las preguntas sobre precio, fecha o contratación se contestan
 donde el usuario las espera: FAQ y formulario, con información concreta.
@@ -147,23 +156,25 @@ según la ortografía; el diseño puede aplicar versales a un cartel. Conserva l
 ## 8. Llamadas a la acción y microcopy
 
 La acción principal es **«Me interesa un trastero»**, que lleva al formulario.
-Puede repetirse en navegación y hero. El enlace secundario explica cómo empezar;
+Puede repetirse en navegación y hero. El enlace secundario del hero lleva a los tamaños;
 no compite con otra oferta.
 
-En el formulario:
+En el formulario `/contacto/`:
 
-- Encabezado: «¿Qué sacarías de casa hoy?».
-- Explicación: «Cuéntanos qué necesitas guardar y para cuándo. Déjanos un teléfono
-  para hablarlo contigo».
-- Pide una descripción aproximada, no que el cliente calcule metros cúbicos.
-- Las etiquetas deben entenderse sin el placeholder.
-- Indica qué ocurrirá al pulsar. No presentes una consulta como contratación.
-- Los errores explican cómo corregir el campo, sin regañar.
-- Solo confirma «Hemos recibido tu consulta» cuando se haya recibido realmente.
+- Primer paso: «Busca tu tamaño perfecto». Seis tamaños y una opción de ayuda.
+- Segundo paso: «¿Cómo contactamos contigo?». Nombre, apellidos, teléfono y
+  correo obligatorios; dirección, código postal y necesidad opcionales.
+- Botón: «Enviar». La consulta va al buzón de contacto desde el servidor.
+- No presentar el envío como reserva, contratación ni pago.
+- No confirmar envío si el servidor de correo no acepta el destinatario.
+- Conservar los datos ante errores. No abrir la aplicación de correo al enviar.
+- Prestaciones indicadas por el cliente: «356 días», «24 horas», «carga y
+  descarga» y «vigilancia 24 h», siempre para la próxima apertura. Mantener
+  literalmente 356 hasta confirmar esa cifra; no sustituirla por 365 sin acuerdo.
+- No mostrar porcentaje de llenado: el cliente lo ha retirado por ahora.
 
-El formulario actual usa `mailto:`. Mientras se mantenga, el botón será «Preparar
-mi consulta» y la explicación: «Se abrirá tu aplicación de correo para que envíes
-la consulta. No estás haciendo una reserva». Cambiar el texto si cambia el mecanismo.
+El envío real requiere credenciales SMTP y un despliegue con servidor. Está
+pendiente de configurar y comprobar la recepción en el buzón.
 
 ## 9. Ejemplos de criterio editorial
 

@@ -14,5 +14,9 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [react(), sitemap()]
+  integrations: [react(), sitemap({
+    filter: (page) => !['/aviso-legal/', '/politica-privacidad/'].includes(new URL(page).pathname)
+      && !new URL(page).pathname.startsWith('/api/')
+      && !/\.(?:txt|md)$/.test(new URL(page).pathname),
+  })]
 });

@@ -5,6 +5,15 @@
 **Fecha de trabajo:** 27 de septiembre de 2026  
 **Estado:** hipótesis en validación
 
+**Actualización comercial y web — 3 de octubre de 2026:** se anuncia la próxima
+apertura en Calle de las Rosas 16. El titular ha confirmado seis tamaños:
+1, 1,5, 2, 2,5, 3 y 3,5 m². Las imágenes son ilustraciones generadas con IA.
+La fecha de apertura y las tarifas todavía no están publicadas. La guía de
+copywriting vigente prevalece sobre las propuestas de texto de este documento.
+El correo público es `contacto@buscamostutrastero.com`. Su alta en Zoho se ha
+verificado el 3 de octubre de 2026: usuario activo y servicio de correo habilitado.
+La web usa este buzón para todas las consultas públicas.
+
 ## 1. Resumen ejecutivo
 
 La idea no debe empezar como «crear una web de trasteros». Debe empezar como
@@ -151,6 +160,12 @@ puede confundir a usuarios y buscadores.
 
 ### SEO técnico
 
+La landing incluye metadatos compartidos, canonical por ruta, Open Graph,
+Twitter Card y un grafo JSON-LD con `SelfStorage`, `WebSite`, `WebPage`,
+`FAQPage` e `ItemList` para los seis tamaños previstos. La FAQ visible y sus
+datos estructurados proceden de la misma fuente. No se declaran precios,
+horarios, fecha de apertura ni disponibilidad actual sin confirmar.
+
 - HTML semántico y texto visible en el documento.
 - Un solo H1 descriptivo.
 - Titles y descriptions específicos por página.
@@ -172,6 +187,38 @@ y creado para usuarios, no páginas fabricadas solo para capturar búsquedas.
 
 GEO no es repetir «trasteros Zaragoza» cien veces. Es hacer que la entidad sea
 fácil de identificar, verificar y citar.
+
+Las buenas prácticas de SEO también se aplican a las funciones de IA de Google;
+no requieren un marcado especial. El contenido debe estar disponible como texto
+y los datos estructurados deben coincidir con la información visible.
+[Documentación de Google sobre funciones de IA](https://developers.google.com/search/docs/appearance/ai-features).
+Esta implementación facilita interpretar la oferta, pero no garantiza posiciones
+ni menciones por asistentes.
+
+### Archivos de descubrimiento y mantenimiento
+
+Astro genera `/llms.txt`, `/llms-full.txt` e `/index.md` durante la compilación.
+El índice breve sigue la [propuesta llms.txt](https://llmstxt.org/); los otros
+dos archivos comparten el resumen comercial completo. Sus contenidos proceden
+de los mismos datos que la landing y su JSON-LD: identidad, dirección, correo,
+seis tamaños, ejemplos ilustrativos y FAQ. No se exporta este documento interno.
+Los enlaces `alternate` y `describedby` de la cabecera facilitan descubrirlos.
+
+La fecha de actualización de los datos se mantiene en `business.updatedAt` y
+se muestra en HTML, JSON-LD y las versiones de texto. El comando `check:seo`,
+tras ejecutar `build`, comprueba coherencia y enlaces en los artefactos generados.
+`robots.txt` permite el rastreo público y referencia el sitemap. Las versiones de
+texto quedan fuera del sitemap para centrarlo en las páginas HTML.
+
+Aviso legal y privacidad conservan campos pendientes de completar. Hasta contar
+con contenido real, llevan `noindex` y quedan fuera del sitemap. Esto no completa
+sus textos ni sustituye la revisión de la identidad y condiciones del titular.
+
+Tras publicar: comprobar respuestas HTTP 200 y tipos MIME, verificar Search
+Console y Bing Webmaster Tools, enviar el sitemap y revisar el rastreo real.
+No se han verificado esas cuentas ni las menciones de asistentes. La fecha,
+tarifas, horarios, condiciones de acceso y fotografías reales siguen pendientes
+de información propia confirmada.
 
 ### Señales que debemos construir
 
@@ -362,3 +409,22 @@ La promesa debe ser pequeña y cierta. Si funciona, se amplía.
 - [Google Business Profile — añadir o reclamar una empresa](https://support.google.com/business/answer/2911778?hl=es).
 - [Google Business Profile — zonas de servicio](https://support.google.com/business/answer/9157481?hl=es).
 - [Ayuntamiento de Zaragoza — reparto de publicidad](https://zaragoza.es/sede/servicio/tramite/29101).
+
+
+## Flujo de consultas actualizado — 3 de octubre de 2026
+
+El CTA «Me interesa un trastero» abre `/contacto/`: elección de tamaño (incluida
+ayuda para elegir) y datos personales. Se solicitan nombre, apellidos, teléfono,
+correo, dirección y código postal; los dos últimos son opcionales para una
+consulta inicial. El destinatario fijo es contacto@buscamostutrastero.com.
+El porcentaje de llenado queda excluido por instrucción del cliente.
+
+El cliente aporta acceso 24 horas durante 356 días, carga y descarga y vigilancia
+24 h como prestaciones para cuando se abra. Se conserva la cifra 356 literal,
+pendiente de confirmar; no se publica como horario de un centro ya abierto.
+El alojamiento se ha verificado: Cloudflare Pages, proyecto landing,
+landing-br9.pages.dev, conectado a main del repositorio; compilación pnpm run build
+y salida dist. El envío va por una Pages Function. Las credenciales SMTP y la
+recepción real del test siguen pendientes de configurar/verificar. No confundir las pruebas automatizadas con
+recepción de un correo real. La política de privacidad aún contiene datos del
+responsable pendientes de completar antes de publicar el flujo.

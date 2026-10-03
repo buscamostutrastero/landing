@@ -1,18 +1,86 @@
 ---
 import '../styles/global.css';
-import { ArrowDown, ArrowUpRight, CheckCircle2, ChevronDown, MapPin, Package, Phone, UserRound } from 'lucide-react';
+import Seo from '../components/Seo.astro';
+import { business } from '../lib/business';
+import { storageSizes, faqs, title, description, updatedLabel, illustrationNotice } from '../lib/storage-content';
+import { ArrowDown, ArrowUpRight, CheckCircle2, ChevronDown, MapPin } from 'lucide-react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Calendar01Icon, Home04Icon, PackageMoving01Icon, PackageSearch01Icon, Store01Icon, TaskAdd02Icon } from '@hugeicons/core-free-icons';
 
-const faqs = [
-  ['¿Dónde vais a abrir?', 'En Calle de las Rosas 16, en Casablanca, Zaragoza. Ahí abrimos nuestros trasteros.'],
-  ['¿Cuándo abrís?', 'La apertura está en marcha. La fecha todavía no está cerrada. Si necesitas espacio, cuéntanos para cuándo.'],
-  ['¿Cuánto va a costar?', 'Todavía no hemos publicado las tarifas. El precio, la fianza y las condiciones estarán claros antes de que contrates.'],
-  ['¿Qué tamaño necesito?', 'Empieza por las cosas: cuántas cajas, qué muebles, si hay una bici… No hace falta que calcules los metros a ojo. Cuéntanos qué quieres guardar; los tamaños se publicarán con la oferta de apertura.'],
-  ['¿Dejar mis datos es reservar?', 'No. Nos sirve para hablar de lo que necesitas. No estás contratando ni pagando nada.'],
-];
+const businessId = `${business.url}/#empresa`;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SelfStorage',
+      '@id': businessId,
+      name: business.name,
+      url: `${business.url}/`,
+      description,
+      email: business.email,
+      logo: `${business.url}/brand/logo.webp`,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: business.streetAddress,
+        addressLocality: business.locality,
+        addressRegion: business.region,
+        addressCountry: business.country,
+      },
+      areaServed: { '@type': 'Place', name: 'Casablanca, Zaragoza' },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        email: business.email,
+        contactType: 'Información sobre trasteros y próxima apertura',
+        availableLanguage: 'es',
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${business.url}/#sitio`,
+      url: `${business.url}/`,
+      name: business.name,
+      inLanguage: 'es-ES',
+      publisher: { '@id': businessId },
+    },
+    {
+      '@type': ['WebPage', 'FAQPage'],
+      '@id': `${business.url}/#pagina`,
+      url: `${business.url}/`,
+      name: title,
+      description,
+      inLanguage: 'es-ES',
+      dateModified: business.updatedAt,
+      isPartOf: { '@id': `${business.url}/#sitio` },
+      about: { '@id': businessId },
+      mainEntity: faqs.map(([question, answer]) => ({
+        '@type': 'Question',
+        name: question,
+        acceptedAnswer: { '@type': 'Answer', text: answer },
+      })),
+    },
+    {
+      '@type': 'ItemList',
+      '@id': `${business.url}/#tamanos`,
+      name: 'Tamaños de trastero que se ofrecerán en la próxima apertura',
+      numberOfItems: storageSizes.length,
+      itemListElement: storageSizes.map(({ size }, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'Service',
+          name: `Trastero de ${size} m² en Casablanca, Zaragoza`,
+          serviceType: 'Alquiler de trasteros',
+          description: `Trastero de ${size} m² que se ofrecerá cuando abra Buscamos tu Trastero en Calle de las Rosas 16, Casablanca, Zaragoza. Próxima apertura; tarifas y fecha aún no publicadas.`,
+          provider: { '@id': businessId },
+          url: `${business.url}/#trasteros`,
+        },
+      })),
+    },
+  ],
+};
 ---
 
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
@@ -23,9 +91,7 @@ const faqs = [
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content="Abrimos trasteros en Calle de las Rosas 16, Casablanca, Zaragoza. Deja de mover las cajas de un lado a otro. Cuéntanos qué necesitas guardar." />
-    <link rel="canonical" href="https://buscamostutrastero.com/" />
-    <title>Trasteros en Casablanca, Zaragoza · Próxima apertura | Buscamos tu Trastero</title>
+    <Seo {title} {description} {structuredData} markdownPath="/index.md" />
   </head>
   <body>
     <a class="skip-link" href="#contenido">Ir al contenido</a>
@@ -41,11 +107,12 @@ const faqs = [
         <div class="container nav">
           <a class="brand" href="#inicio" aria-label="Buscamos tu Trastero, inicio"><img src="/brand/logo.webp" width="1260" height="380" alt="Buscamos tu Trastero" /></a>
           <nav class="nav-links" aria-label="Navegación principal">
+            <a href="#trasteros">Tamaños</a>
             <a href="#como-funciona">Cómo empezar</a>
             <a href="#ubicacion">Ubicación</a>
             <a href="#preguntas">Preguntas</a>
           </nav>
-          <a class="button button-dark" href="#contacto" aria-label="Me interesa un trastero"><span>Me interesa un trastero</span><ArrowUpRight aria-hidden="true" size={17} strokeWidth={2.25} /></a>
+          <a class="button button-dark" href="/contacto/" aria-label="Me interesa un trastero"><span>Me interesa un trastero</span><ArrowUpRight aria-hidden="true" size={17} strokeWidth={2.25} /></a>
         </div>
       </header>
 
@@ -53,13 +120,13 @@ const faqs = [
         <section class="hero" id="inicio">
           <div class="container hero-grid">
             <div class="hero-copy">
-              <div class="eyebrow">Abrimos trasteros en Casablanca</div>
+              <div class="eyebrow">Trasteros en Casablanca, Zaragoza · Próxima apertura</div>
               <h1 class="display"><span class="hero-heading-line">Has ordenado otra vez.</span> <span class="accent-heading hero-heading-line">Sigue sin caber una mierda.</span></h1>
               <p>Cambias las cajas de habitación. Empujas la bici contra la pared. Cierras el armario haciendo fuerza. Ya has hecho hueco demasiadas veces.</p>
-              <p>Abrimos trasteros en Calle de las Rosas 16, Casablanca, Zaragoza. Para guardar lo que quieres conservar y dejar de vivir esquivándolo.</p>
+              <p>Abrimos trasteros de 1 a 3,5 m² en Calle de las Rosas 16, Casablanca, Zaragoza. Para guardar lo que quieres conservar y dejar de vivir esquivándolo.</p>
               <div class="hero-actions">
-                <a class="button button-primary" href="#contacto"><span>Me interesa un trastero</span><span class="button-icon"><ArrowUpRight aria-hidden="true" size={18} strokeWidth={2.25} /></span></a>
-                <a class="button button-ghost" href="#como-funciona"><span>Cómo empezar</span><span class="button-icon button-icon-ghost"><ArrowDown aria-hidden="true" size={18} strokeWidth={2.25} /></span></a>
+                <a class="button button-primary" href="/contacto/"><span>Me interesa un trastero</span><span class="button-icon"><ArrowUpRight aria-hidden="true" size={18} strokeWidth={2.25} /></span></a>
+                <a class="button button-ghost" href="#trasteros"><span>Ver los tamaños</span><span class="button-icon button-icon-ghost"><ArrowDown aria-hidden="true" size={18} strokeWidth={2.25} /></span></a>
               </div>
               <div class="hero-note"><span class="hero-note-icon"><MapPin aria-hidden="true" size={16} strokeWidth={2} /></span><span>Calle de las Rosas 16 · Zaragoza</span></div>
             </div>
@@ -77,6 +144,35 @@ const faqs = [
             <div class="proof-item"><CheckCircle2 aria-hidden="true" size={17} strokeWidth={2} /> Conserva lo que quieres</div>
           </div>
         </div>
+
+        <section class="section storage-section" id="trasteros" aria-labelledby="storage-heading">
+          <div class="container">
+            <div class="storage-heading">
+              <div class="section-heading">
+                <div class="eyebrow">De 1 a 3,5 m²</div>
+                <h2 class="section-title" id="storage-heading">Trasteros de 1 a 3,5 m². ¿Qué sacarías de casa?</h2>
+                <p>Desde las cajas del armario hasta lo que ocupa una habitación. Cuando abramos, ofreceremos todos estos tamaños de trastero.</p>
+              </div>
+              <span class="storage-opening"><HugeiconsIcon icon={Calendar01Icon} aria-hidden="true" size={18} strokeWidth={1.8} />Próxima apertura</span>
+            </div>
+            <div class="storage-grid">
+              {storageSizes.map(({ size, image, title, description, alt }) => (
+                <article class="storage-card">
+                  <img src={`/images/sizes/${image}-800.webp`} srcset={`/images/sizes/${image}-480.webp 480w, /images/sizes/${image}-800.webp 800w`} sizes="(min-width: 1100px) 360px, (min-width: 768px) 45vw, calc(100vw - 40px)" width="800" height="800" alt={alt} loading="lazy" decoding="async" />
+                  <div class="storage-card-copy">
+                    <h3><span class="storage-size">{size} <span>m²</span></span><span class="storage-card-title">{title}</span></h3>
+                    <p>{description}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+            <p class="storage-caption">{illustrationNotice}</p>
+            <div class="storage-help">
+              <div><h3>¿No sabes cuántos metros necesitas?</h3><p>Cuéntanos qué quieres guardar. Te ayudamos a elegir el tamaño.</p></div>
+              <a class="button button-dark" href="/contacto/"><span>Me interesa un trastero</span><ArrowUpRight aria-hidden="true" size={18} strokeWidth={2.25} /></a>
+            </div>
+          </div>
+        </section>
 
         <section class="section" id="como-funciona">
           <div class="container split">
@@ -111,27 +207,20 @@ const faqs = [
               <div class="eyebrow">Aquí abrimos</div>
               <h2>Tus cosas, en Las Rosas 16. Tu casa, para ti.</h2>
               <p>Abrimos trasteros en Calle de las Rosas 16, en Casablanca, Zaragoza. Para esas cosas que quieres tener cerca, pero que no necesitas ver cada vez que cruzas el salón.</p>
-              <div class="location-detail"><span class="pin"><MapPin aria-hidden="true" size={17} strokeWidth={2} /></span><span>Calle de las Rosas 16 · Casablanca, Zaragoza</span></div>
+              <address class="location-detail"><span class="pin"><MapPin aria-hidden="true" size={17} strokeWidth={2} /></span><span>Calle de las Rosas 16 · Casablanca, Zaragoza</span></address>
               <div class="location-image"><img src="/images/moving-boxes.webp" width="1448" height="1086" alt="Cajas preparadas para una mudanza" loading="lazy" /></div>
             </div>
             <div class="contact-card" id="contacto">
-              <h3>¿Qué sacarías de casa hoy?</h3><p>Cuéntanos qué necesitas guardar y para cuándo. Déjanos un teléfono para hablarlo contigo.</p>
-              <form class="form-grid" action="mailto:admin@buscamostutrastero.com" method="post" enctype="text/plain">
-                <label class="field"><span class="form-label">Nombre</span><span class="field-control"><UserRound aria-hidden="true" size={17} strokeWidth={2} /><input name="name" autocomplete="name" placeholder="Tu nombre" required /></span></label>
-                <label class="field"><span class="form-label">WhatsApp o teléfono</span><span class="field-control"><Phone aria-hidden="true" size={17} strokeWidth={2} /><input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="600 000 000" required /></span></label>
-                <label class="field"><span class="form-label">¿Qué necesitas guardar y para cuándo?</span><span class="field-control field-control-textarea"><Package aria-hidden="true" size={17} strokeWidth={2} /><textarea name="need" placeholder="Una bici, unas 10 cajas y un sofá. Lo necesito para noviembre."></textarea></span></label>
-                <div class="form-privacy"><strong>Información básica sobre protección de datos</strong><span>Responsable: titular de este sitio. Finalidad: responder a tu consulta. Legitimación: tu consentimiento. Destinatarios: no se cederán datos salvo obligación legal. Derechos: consulta la <a href="/politica-privacidad/">Política de privacidad</a>.</span></div>
-                <label class="privacy-consent"><input type="checkbox" required /><span>He leído la <a href="/politica-privacidad/">Política de privacidad</a>.</span></label>
-                <button class="button button-primary form-submit" type="submit" aria-describedby="contact-help">Preparar mi consulta <ArrowUpRight aria-hidden="true" size={18} strokeWidth={2.25} /></button>
-              </form>
-              <p class="form-footnote" id="contact-help">Se abrirá tu aplicación de correo para que envíes la consulta. No estás haciendo una reserva.</p>
+              <h3>Busca tu tamaño perfecto.</h3><p>Elige entre 1 y 3,5 m². Si no sabes cuánto espacio necesitas, te ayudamos a elegir.</p>
+              <a class="button button-primary" href="/contacto/">Me interesa un trastero <ArrowUpRight aria-hidden="true" size={18} /></a>
+              <p class="form-footnote">Elige tamaño y déjanos tus datos. Solicitar información no implica reservar ni pagar.</p>
             </div>
           </div>
         </section>
 
         <section class="section" id="preguntas">
           <div class="container">
-            <div class="section-heading"><div class="eyebrow">Preguntas frecuentes</div><h2 class="section-title">Al grano: dónde, cuándo y cuánto.</h2></div>
+            <div class="section-heading"><div class="eyebrow">Preguntas frecuentes</div><h2 class="section-title">Al grano: dónde, cuándo y cuánto.</h2><p class="information-updated">Información de apertura actualizada el <time datetime={business.updatedAt}>{updatedLabel}</time>.</p></div>
             <div class="faq-list">{faqs.map(([question, answer]) => <details><summary><span>{question}</span><ChevronDown className="faq-chevron" aria-hidden="true" size={20} strokeWidth={2} /></summary><p>{answer}</p></details>)}</div>
           </div>
         </section>
@@ -139,8 +228,8 @@ const faqs = [
 
       <footer class="site-footer">
         <div class="container footer-main">
-          <div><div class="footer-brand">Buscamos tu <span>Trastero</span></div><p class="footer-description">Abrimos en Casablanca. Para que vuelvas a tener sitio en casa.</p><a class="footer-contact" href="mailto:admin@buscamostutrastero.com">admin@buscamostutrastero.com</a></div>
-          <nav class="footer-nav" aria-label="Navegación del sitio"><strong>Explora</strong><a href="#como-funciona">Cómo empezar</a><a href="#ubicacion">Ubicación</a><a href="#preguntas">Preguntas frecuentes</a></nav>
+          <div><div class="footer-brand">Buscamos tu <span>Trastero</span></div><p class="footer-description">Abrimos en Casablanca. Para que vuelvas a tener sitio en casa.</p><a class="footer-contact" href={`mailto:${business.email}`}>{business.email}</a></div>
+          <nav class="footer-nav" aria-label="Navegación del sitio"><strong>Explora</strong><a href="#trasteros">Tamaños de trastero</a><a href="#como-funciona">Cómo empezar</a><a href="#ubicacion">Ubicación</a><a href="#preguntas">Preguntas frecuentes</a></nav>
           <nav class="footer-nav" aria-label="Información legal"><strong>Legal</strong><a href="/aviso-legal/">Aviso legal</a><a href="/politica-privacidad/">Privacidad</a><a href="/politica-cookies/">Cookies</a></nav>
         </div>
         <div class="container footer-bottom"><span>© {new Date().getFullYear()} Buscamos tu Trastero</span><span>Todos los derechos reservados.</span></div>

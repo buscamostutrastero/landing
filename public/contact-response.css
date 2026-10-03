@@ -1,0 +1,1 @@
+body{font:1rem/1.6 system-ui,sans-serif;background:#f7f4ec;color:#16364b;margin:0;padding:2rem}main{max-width:640px;margin:8vh auto;background:white;border-radius:20px;padding:clamp(1rem,5vw,3rem)}h1{line-height:1.2}a{color:#16364b;text-underline-offset:4px;overflow-wrap:anywhere}a:focus-visible{outline:3px solid #8f5b00;outline-offset:4px}

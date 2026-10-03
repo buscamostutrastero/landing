@@ -1,15 +1,16 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
+import { business } from '../lib/business';
 ---
 
-<LegalLayout title="Aviso legal" description="Aviso legal de Buscamos tu Trastero.">
+<LegalLayout title="Aviso legal" description="Aviso legal de Buscamos tu Trastero." noindex>
   <p class="legal-kicker">Información del sitio</p>
   <h1>Aviso legal</h1>
-  <p class="legal-updated">Última actualización: 27 de septiembre de 2026</p>
+  <p class="legal-updated">Última actualización: 3 de octubre de 2026</p>
   <div class="legal-notice"><strong>Plantilla pendiente de completar.</strong> Antes de publicar definitivamente esta página, sustituye los campos entre corchetes por los datos reales del titular.</div>
   <h2>Titularidad</h2>
   <p>Este sitio web, <strong>buscamostutrastero.com</strong>, está gestionado por <strong>[nombre o razón social del titular]</strong>, con NIF/CIF <strong>[NIF/CIF]</strong> y domicilio en <strong>[domicilio completo]</strong>.</p>
-  <p>Para cualquier consulta puedes escribir a <a href="mailto:admin@buscamostutrastero.com">admin@buscamostutrastero.com</a>.</p>
+  <p>Para cualquier consulta puedes escribir a <a href={`mailto:${business.email}`}>{business.email}</a>.</p>
   <h2>Objeto del sitio</h2>
   <p>Esta web permite solicitar información sobre trasteros en la zona de Casablanca, Zaragoza. La información sobre disponibilidad, precio y condiciones se confirmará antes de formalizar cualquier contratación.</p>
   <h2>Uso del contenido</h2>

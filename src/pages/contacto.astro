@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+import Seo from '../components/Seo.astro';
+import { business } from '../lib/business';
+import { storageSizes } from '../lib/storage-content';
+import { ArrowLeft, ArrowRight, Check, Clock3, MapPin, ShieldCheck, Truck } from 'lucide-react';
+const title = 'Encuentra tu tamaño de trastero en Casablanca | Buscamos tu Trastero';
+const description = 'Elige entre trasteros de 1 a 3,5 m² en Casablanca, Zaragoza, y solicita información sobre la próxima apertura en Calle de las Rosas 16.';
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <Seo {title} {description} structuredData={{ '@context': 'https://schema.org', '@type': 'ContactPage', name: title, description, url: `${business.url}/contacto/`, inLanguage: 'es-ES', about: { '@id': `${business.url}/#empresa` } }} />
+  </head>
+  <body>
+    <a class="skip-link" href="#consulta">Ir al formulario</a>
+    <header class="site-header"><div class="container nav"><a class="brand" href="/" aria-label="Buscamos tu Trastero, inicio"><img src="/brand/logo.webp" width="1260" height="380" alt="Buscamos tu Trastero" /></a><a class="contact-back" href="/"><ArrowLeft aria-hidden="true" size={17} /> Volver a la web</a></div></header>
+    <main class="contact-main container">
+      <div class="contact-intro">
+        <div class="eyebrow">Próxima apertura · Zaragoza</div>
+        <h1>Trasteros en <span class="accent-heading">Casablanca.</span></h1>
+        <p>Busca tu tamaño perfecto. Elige cuánto espacio necesitas y déjanos cómo contactar contigo.</p>
+        <address class="contact-address"><MapPin aria-hidden="true" size={20} /><span>Calle de las Rosas 16<br />Casablanca, Zaragoza</span></address>
+        <div class="contact-benefits"><h2>Cuando abramos</h2><ul><li><Clock3 aria-hidden="true" size={21} /><span>356 días · acceso 24 horas</span></li><li><Truck aria-hidden="true" size={21} /><span>Carga y descarga</span></li><li><ShieldCheck aria-hidden="true" size={21} /><span>Vigilancia 24 h</span></li></ul></div>
+        <p class="contact-assurance"><Check aria-hidden="true" size={18} /><span>Solicitar información no implica reservar, contratar ni pagar.</span></p>
+      </div>
+      <section class="inquiry-card" id="consulta" aria-label="Solicitud de información">
+        <ol class="inquiry-progress" aria-label="Pasos de la consulta"><li data-progress="1" aria-current="step"><span>1</span> Tu tamaño</li><li data-progress="2"><span>2</span> Tus datos</li></ol>
+        <form id="inquiry-form" action="/api/contacto" method="post">
+          <fieldset data-step="1" class="inquiry-step"><legend id="size-heading" tabindex="-1">Busca tu tamaño perfecto.</legend><p class="inquiry-description">Todos estos tamaños estarán disponibles cuando abramos. Elige una opción orientativa.</p>
+            <div class="size-choices">{storageSizes.map(({ size, image, description: use }) => <label class="size-choice"><input type="radio" name="size" value={size} /><span class="size-choice-content"><img src={`/images/sizes/${image}-480.webp`} width="480" height="480" alt="" loading="lazy" /><span class="size-choice-label">{size} m² <span class="size-selected" aria-hidden="true"><Check size={14} /></span></span><span class="size-choice-use">{use}</span></span></label>)}</div>
+            <label class="size-unsure"><input type="radio" name="size" value="unknown" checked /><span><strong>No sé qué tamaño necesito</strong><span>Te ayudamos a elegir según lo que quieras guardar.</span></span></label>
+            <p class="inquiry-note">Imágenes generadas con IA. La distribución es orientativa; comprueba las medidas de tus objetos.</p>
+            <button class="button button-primary inquiry-next" type="button" hidden>Continuar <ArrowRight aria-hidden="true" size={18} /></button>
+          </fieldset>
+          <fieldset data-step="2" class="inquiry-step"><legend id="details-heading" tabindex="-1">¿Cómo contactamos contigo?</legend><p class="inquiry-description" id="chosen-size">Nos pondremos en contacto contigo para hablar del tamaño y la apertura.</p>
+            <div class="inquiry-fields">
+              <label class="field"><span class="form-label">Nombre</span><input id="firstName" name="firstName" autocomplete="given-name" required maxlength="80" /></label>
+              <label class="field"><span class="form-label">Apellidos</span><input id="lastName" name="lastName" autocomplete="family-name" required maxlength="120" /></label>
+              <label class="field"><span class="form-label">Teléfono</span><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="30" aria-describedby="phone-help" /><small id="phone-help">Incluye el prefijo si es de fuera de España.</small></label>
+              <label class="field"><span class="form-label">Correo electrónico</span><input id="email" name="email" type="email" autocomplete="email" required maxlength="254" /></label>
+              <label class="field inquiry-wide"><span class="form-label">Dirección <span class="optional">(opcional)</span></span><input id="address" name="address" autocomplete="street-address" maxlength="200" /></label>
+              <label class="field"><span class="form-label">Código postal <span class="optional">(opcional)</span></span><input id="postalCode" name="postalCode" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" aria-describedby="postal-help" /><small id="postal-help">Cinco cifras para direcciones en España.</small></label>
+              <label class="field inquiry-wide"><span class="form-label">¿Qué necesitas guardar y para cuándo? <span class="optional">(opcional)</span></span><textarea id="need" name="need" rows="3" maxlength="2000" placeholder="Una bici y unas 10 cajas. Lo necesitaría para noviembre."></textarea></label>
+            </div>
+            <div class="inquiry-honeypot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off" /></label></div>
+            <p class="inquiry-note">Nombre, apellidos, teléfono y correo son obligatorios. Usaremos tus datos para responder a esta consulta.</p>
+            <label class="privacy-consent"><input id="consent" name="consent" type="checkbox" value="yes" required /><span>He leído la <a href="/politica-privacidad/">Política de privacidad</a> y acepto que contactéis conmigo para responder a mi consulta.</span></label>
+            <div id="form-status" class="inquiry-status" role="status" aria-live="polite" tabindex="-1" hidden></div>
+            <div class="inquiry-actions"><button type="button" class="button button-ghost inquiry-previous" hidden><ArrowLeft aria-hidden="true" size={17} /> Cambiar tamaño</button><button type="submit" class="button button-primary inquiry-submit">Enviar <ArrowRight aria-hidden="true" size={18} /></button></div>
+            <p class="inquiry-note">Enviaremos tu consulta a <a href={`mailto:${business.email}`}>{business.email}</a>.</p>
+          </fieldset>
+        </form>
+        <div id="inquiry-success" class="inquiry-success" tabindex="-1" hidden><span class="inquiry-success-icon"><Check aria-hidden="true" size={28} /></span><h2>Tu consulta se ha enviado.</h2><p>Nos pondremos en contacto contigo por teléfono o correo para hablar de lo que necesitas y la próxima apertura.</p><p>No has hecho una reserva ni un pago.</p><a class="button button-dark" href="/">Volver a la web</a></div>
+      </section>
+    </main>
+    <footer class="inquiry-footer container"><span>Buscamos tu Trastero · Próxima apertura</span><a href="/politica-privacidad/">Privacidad</a></footer>
+    <script src="../scripts/inquiry.ts"></script>
+  </body>
+</html>
