@@ -29,7 +29,8 @@ pnpm exec tsc --noEmit
 visible FAQ answers, text versions, canonical links, local link targets, robots
 and sitemap exclusions. Public pages are generated in `dist/`. The existing Cloudflare Pages project is
 `landing` (`landing-br9.pages.dev`), account `69be28ac697f25a209c529c1334e6ab9`,
-with this repository connected, production branch `main`, build command
+with canonical domain `https://www.buscamostutrastero.com` (the apex redirects
+to www), this repository connected, production branch `main`, build command
 `pnpm run build`, and output directory `dist`. These settings were verified in
 the dashboard on 3 October 2026.
 

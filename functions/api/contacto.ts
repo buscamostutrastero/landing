@@ -26,7 +26,8 @@ export const onRequest = async ({ request, env }: { request: Request; env: Env }
   const requestUrl = new URL(request.url);
   const local = ['localhost', '127.0.0.1', '[::1]'].includes(requestUrl.hostname);
   const preview = /^(?:[a-z0-9-]+\.)?landing-br9\.pages\.dev$/.test(requestUrl.hostname);
-  const publicOrigins = [business.url, `https://www.${new URL(business.url).hostname}`];
+  const publicHostname = new URL(business.url).hostname.replace(/^www\./, '');
+  const publicOrigins = [`https://${publicHostname}`, `https://www.${publicHostname}`];
   if (!publicOrigins.includes(origin ?? '') && !((local || preview) && origin === requestUrl.origin)) return respond(403, { ok: false, message: 'Envía tu consulta desde el formulario de nuestra web.' });
   if (Number(request.headers.get('content-length')) > 16384) return respond(413, { ok: false, message: 'La consulta es demasiado larga. Reduce la descripción e inténtalo de nuevo.' });
   const now = Date.now();
