@@ -114,6 +114,16 @@ application password. Production `SMTP_HOST`, `SMTP_PORT` and `SMTP_USER` are de
 Enter only secret `SMTP_PASS` in **Pages → landing → Settings → Variables and
 secrets**. Use the Preview environment for a preview test, and Production for
 the launch.
+The Zoho trial expired on 13 October 2026, as verified in the admin mailbox
+and the Mail Free subscription on 14 October 2026.
+`SMTP_HOST` uses `smtp.zoho.eu` for the free organization account; the previous
+`smtppro.zoho.eu` endpoint is for paid organization accounts. A diagnostic
+request to the deployed Pages API returned `X-Contact-Delivery-Code: EAUTH`.
+The hostname correction was published to production on 14 October 2026
+(`82c36ecf.landing-br9.pages.dev`). Chrome submission
+`PRUEBA FINAL CF-141026-0901-FREE` displayed the success screen with the existing
+SMTP credentials. The owner confirmed receipt in the contacto inbox on the
+same day. No paid subscription was needed.
 Secrets are runtime bindings (`context.env`), never embedded in the browser.
 Do not prefix them with `PUBLIC_` or commit `.dev.vars` to source control.
 
