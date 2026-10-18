@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { consentKey, consentLifetime, createAnalyticsConsent, measurementId } from '../src/lib/analytics-consent.ts';
+import { consentKey, consentLifetime, createAnalyticsConsent, measurementId } from '../src/lib/analytics-consent.mjs';
 
 function fixture(saved = null) {
   let value = saved;

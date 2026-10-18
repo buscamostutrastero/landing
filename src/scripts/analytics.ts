@@ -1,4 +1,4 @@
-import { consentKey, createAnalyticsConsent, measurementId } from '../lib/analytics-consent';
+import { consentKey, createAnalyticsConsent, measurementId } from '../lib/analytics-consent.mjs';
 
 const banner = document.querySelector<HTMLElement>('#cookie-consent')!;
 const heading = banner.querySelector<HTMLElement>('h2')!;

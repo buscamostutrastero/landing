@@ -2,23 +2,27 @@ export const measurementId = 'G-7STN70E77R';
 export const consentKey = 'btt:analytics-consent:v1';
 export const consentLifetime = 180 * 24 * 60 * 60 * 1000;
 
-interface Choice { analytics: boolean; savedAt: number; version: 1 }
-interface Options {
-  storage: Pick<Storage, 'getItem' | 'setItem'>;
-  command: (...args: unknown[]) => void;
-  loadTag: () => void;
-  disable: (disabled: boolean) => void;
-  clearCookies: () => void;
-  page: { location: string; referrer: string; title: string };
-  now?: () => number;
-}
+/** @typedef {{ analytics: boolean, savedAt: number, version: 1 }} Choice */
+/**
+ * @typedef {object} Options
+ * @property {Pick<Storage, 'getItem' | 'setItem'>} storage
+ * @property {(...args: unknown[]) => void} command
+ * @property {() => void} loadTag
+ * @property {(disabled: boolean) => void} disable
+ * @property {() => void} clearCookies
+ * @property {{ location: string, referrer: string, title: string }} page
+ * @property {() => number} [now]
+ */
 
-export function createAnalyticsConsent(options: Options) {
+/** @param {Options} options */
+export function createAnalyticsConsent(options) {
   const now = options.now ?? Date.now;
-  let choice: Choice | null = null;
+  /** @type {Choice | null} */
+  let choice = null;
   let started = false;
   let active = false;
-  const read = (): Choice | null => {
+  /** @returns {Choice | null} */
+  const read = () => {
     try {
       const value = JSON.parse(options.storage.getItem(consentKey) ?? 'null');
       return value?.version === 1 && typeof value.analytics === 'boolean'
@@ -59,7 +63,8 @@ export function createAnalyticsConsent(options: Options) {
   };
   return {
     sync() { choice = read(); apply(); return choice?.analytics ?? null; },
-    choose(analytics: boolean) {
+    /** @param {boolean} analytics */
+    choose(analytics) {
       choice = { version: 1, analytics, savedAt: now() };
       try { options.storage.setItem(consentKey, JSON.stringify(choice)); } catch { /* Keep the choice for this page. */ }
       apply();
