@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Seo from '../components/Seo.astro';
+import AnalyticsConsent from '../components/AnalyticsConsent.astro';
 import { business } from '../lib/business';
 import { storageSizes, faqs, title, description, updatedLabel, illustrationNotice } from '../lib/storage-content';
 import { ArrowDown, ArrowUpRight, CheckCircle2, ChevronDown, MapPin } from 'lucide-react';
@@ -230,10 +231,11 @@ const structuredData = {
         <div class="container footer-main">
           <div><div class="footer-brand">Buscamos tu <span>Trastero</span></div><p class="footer-description">Abrimos en Casablanca. Para que vuelvas a tener sitio en casa.</p><a class="footer-contact" href={`mailto:${business.email}`}>{business.email}</a></div>
           <nav class="footer-nav" aria-label="Navegación del sitio"><strong>Explora</strong><a href="#trasteros">Tamaños de trastero</a><a href="#como-funciona">Cómo empezar</a><a href="#ubicacion">Ubicación</a><a href="#preguntas">Preguntas frecuentes</a></nav>
-          <nav class="footer-nav" aria-label="Información legal"><strong>Legal</strong><a href="/aviso-legal/">Aviso legal</a><a href="/politica-privacidad/">Privacidad</a><a href="/politica-cookies/">Cookies</a></nav>
+          <nav class="footer-nav" aria-label="Información legal"><strong>Legal</strong><a href="/aviso-legal/">Aviso legal</a><a href="/politica-privacidad/">Privacidad</a><a href="/politica-cookies/">Cookies</a><button type="button" data-cookie-settings>Configurar cookies</button></nav>
         </div>
         <div class="container footer-bottom"><span>© {new Date().getFullYear()} Buscamos tu Trastero</span><span>Todos los derechos reservados.</span></div>
       </footer>
     </div>
+    <AnalyticsConsent />
   </body>
 </html>

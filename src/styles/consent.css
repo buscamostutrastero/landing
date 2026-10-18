@@ -1,0 +1,17 @@
+.cookie-consent { position: fixed; inset: auto 1rem 1rem; z-index: 100; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; max-width: 1120px; max-height: calc(100dvh - 2rem); overflow-y: auto; margin-inline: auto; padding: 1.5rem; border: 1px solid #d0d8dd; border-radius: 16px; background: #fffdf6; color: #0b2b45; box-shadow: 0 8px 40px #071e3033; }
+.cookie-consent[hidden] { display: none; }
+.cookie-copy { max-width: 66ch; }
+.cookie-copy h2 { margin: 0 0 .5rem; font: 800 1.125rem/1.4 'Manrope', sans-serif; }
+.cookie-copy p { margin: 0 0 .5rem; font-size: .875rem; line-height: 1.6; }
+.cookie-copy a { display: inline-flex; align-items: center; min-height: 44px; color: inherit; font-size: .875rem; text-decoration: underline; text-underline-offset: 3px; }
+.cookie-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; flex-shrink: 0; }
+.cookie-actions button { min-height: 48px; padding: .75rem 1rem; border: 1px solid #0b2b45; border-radius: 8px; background: #0b2b45; color: white; cursor: pointer; font: 700 .875rem/1.4 'DM Sans', sans-serif; }
+.cookie-actions button:hover { background: #17486a; }
+.cookie-actions .cookie-close { grid-column: 1 / -1; background: transparent; color: #0b2b45; }
+.cookie-actions .cookie-close:hover { background: #f0eee6; }
+[data-cookie-settings] { display: inline-flex; align-items: center; min-height: 44px; width: fit-content; padding: 0; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.cookie-consent :focus-visible, [data-cookie-settings]:focus-visible { outline: 3px solid #b36f00; outline-offset: 4px; }
+.footer-nav [data-cookie-settings] { color: rgb(255 255 255 / 78%); font-size: .9375rem; }
+.legal-footer nav { align-items: center; flex-wrap: wrap; }
+@media (max-width: 900px) { .cookie-consent { align-items: stretch; flex-direction: column; gap: .75rem; } .cookie-actions { align-self: stretch; } }
+@media (max-width: 480px) { .cookie-consent { inset: auto .5rem .5rem; max-height: calc(100dvh - 1rem); padding: 1rem; border-radius: 12px; } .cookie-actions { gap: .5rem; } .cookie-actions button { padding-inline: .5rem; } }

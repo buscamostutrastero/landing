@@ -1,0 +1,17 @@
+---
+import '../styles/consent.css';
+---
+
+<section id="cookie-consent" class="cookie-consent" role="region" aria-labelledby="cookie-heading" hidden>
+  <div class="cookie-copy">
+    <h2 id="cookie-heading" tabindex="-1">Tú decides sobre las cookies</h2>
+    <p>Usamos Google Analytics para medir las visitas y las consultas enviadas. Solo se activa si aceptas. Puedes cambiar tu decisión desde «Configurar cookies».</p>
+    <a href="/politica-cookies/">Consultar la política de cookies</a>
+  </div>
+  <div class="cookie-actions">
+    <button type="button" data-cookie-choice="reject">Rechazar analítica</button>
+    <button type="button" data-cookie-choice="accept">Aceptar analítica</button>
+    <button type="button" class="cookie-close" data-cookie-close hidden>Cerrar sin cambios</button>
+  </div>
+</section>
+<script src="../scripts/analytics.ts"></script>

@@ -69,6 +69,7 @@ export default function NotFoundPage() {
       <footer className="not-found-footer not-found-container">
         <span>© {new Date().getFullYear()} {business.name}</span>
         <a href="/politica-privacidad/">Privacidad</a>
+        <button type="button" data-cookie-settings>Configurar cookies</button>
       </footer>
     </div>
   );

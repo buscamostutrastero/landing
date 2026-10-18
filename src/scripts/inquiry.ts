@@ -73,6 +73,7 @@ if (form) {
       document.querySelector<HTMLElement>('.inquiry-progress')!.hidden = true;
       success.hidden = false;
       success.focus();
+      window.dispatchEvent(new Event('btt:inquiry-sent'));
     } catch {
       status.textContent = 'No hemos podido confirmar el envío. Tus datos siguen aquí. Puedes reintentar o escribir al correo que aparece debajo.';
       status.focus();

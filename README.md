@@ -167,3 +167,29 @@ confirmation rather than silently changed to 365. No occupancy percentage is sho
 
 References: [Pages Functions](https://developers.cloudflare.com/pages/functions/get-started/),
 [Zoho SMTP settings](https://www.zoho.com/mail/help/zoho-smtp.html).
+
+## Google Analytics and consent
+
+GA4 web stream `16154443777` uses measurement ID `G-7STN70E77R`. This is a
+public identifier, not a secret. `AnalyticsConsent.astro` is included in each
+HTML layout, including the 404. The controller loads gtag.js only after explicit
+analytics consent (basic Consent Mode v2). Advertising consent remains denied;
+Google Signals and ad personalization are disabled.
+
+Accept/reject preferences expire after 180 days and can be changed using
+“Configurar cookies” in every footer. Rejecting disables the measurement ID and
+removes accessible first-party `_ga` cookies. The Google library already loaded
+in a consenting session remains in memory, with measurement disabled. Existing
+data in Analytics is not deleted by withdrawing consent.
+
+Page URLs use the canonical link without queries or fragments; referrers include
+only the origin. Form fields are never passed to Analytics. `generate_lead` is
+emitted only after the contact API confirms success and only with consent.
+Automatic form interactions and site search were disabled in the GA4 stream
+on 18 October 2026; keep them disabled to avoid counting failed form submissions
+or collecting search parameters.
+
+The consent tests cover rejection, malformed/expired preferences, blocked storage,
+revocation, reacceptance and lead-event gating. Verify initial rejection, acceptance
+and withdrawal in a real browser after changing the controller. Cookies and privacy
+policies describe the integration; legal identity details remain pending.

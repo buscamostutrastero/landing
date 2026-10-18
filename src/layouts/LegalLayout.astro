@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Seo from '../components/Seo.astro';
+import AnalyticsConsent from '../components/AnalyticsConsent.astro';
 
 const { description, title, noindex = false } = Astro.props;
 ---
@@ -15,6 +16,7 @@ const { description, title, noindex = false } = Astro.props;
   <body>
     <header class="legal-header"><div class="container"><a class="brand" href="/" aria-label="Buscamos tu Trastero, inicio"><img src="/brand/logo.webp" alt="Buscamos tu Trastero" /></a></div></header>
     <main class="legal-page"><div class="container legal-container"><a class="legal-back" href="/">← Volver a la página principal</a><article class="legal-content"><slot /></article></div></main>
-    <footer class="site-footer"><div class="container footer-bottom legal-footer"><span>© {new Date().getFullYear()} Buscamos tu Trastero</span><nav aria-label="Información legal"><a href="/aviso-legal/">Aviso legal</a><a href="/politica-privacidad/">Privacidad</a><a href="/politica-cookies/">Cookies</a></nav></div></footer>
+    <footer class="site-footer"><div class="container footer-bottom legal-footer"><span>© {new Date().getFullYear()} Buscamos tu Trastero</span><nav aria-label="Información legal"><a href="/aviso-legal/">Aviso legal</a><a href="/politica-privacidad/">Privacidad</a><a href="/politica-cookies/">Cookies</a><button type="button" data-cookie-settings>Configurar cookies</button></nav></div></footer>
+    <AnalyticsConsent />
   </body>
 </html>

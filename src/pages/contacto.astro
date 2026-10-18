@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Seo from '../components/Seo.astro';
+import AnalyticsConsent from '../components/AnalyticsConsent.astro';
 import { business } from '../lib/business';
 import { storageSizes } from '../lib/storage-content';
 import { ArrowLeft, ArrowRight, Check, Clock3, MapPin, ShieldCheck, Truck } from 'lucide-react';
@@ -57,7 +58,8 @@ const description = 'Elige entre trasteros de 1 a 3,5 m² en Casablanca, Zaragoz
         <div id="inquiry-success" class="inquiry-success" tabindex="-1" hidden><span class="inquiry-success-icon"><Check aria-hidden="true" size={28} /></span><h2>Tu consulta se ha enviado.</h2><p>Nos pondremos en contacto contigo por teléfono o correo para hablar de lo que necesitas y la próxima apertura.</p><p>No has hecho una reserva ni un pago.</p><a class="button button-dark" href="/">Volver a la web</a></div>
       </section>
     </main>
-    <footer class="inquiry-footer container"><span>Buscamos tu Trastero · Próxima apertura</span><a href="/politica-privacidad/">Privacidad</a></footer>
+    <footer class="inquiry-footer container"><span>Buscamos tu Trastero · Próxima apertura</span><a href="/politica-privacidad/">Privacidad</a><button type="button" data-cookie-settings>Configurar cookies</button></footer>
     <script src="../scripts/inquiry.ts"></script>
+    <AnalyticsConsent />
   </body>
 </html>
