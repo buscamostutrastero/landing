@@ -34,6 +34,12 @@ to www), this repository connected, production branch `main`, build command
 `pnpm run build`, and output directory `dist`. These settings were verified in
 the dashboard on 3 October 2026.
 
+`src/pages/404.astro` generates a top-level `dist/404.html`. Cloudflare Pages
+uses it for missing paths, returning HTTP 404 instead of serving the homepage
+through its default SPA fallback. Keep this file in every deployment. It has
+`noindex, follow` and is excluded from the sitemap. The SEO check verifies its
+presence and recovery links, as well as the homepage's business title.
+
 `functions/api/contacto.ts` is bundled separately by Cloudflare Pages. The build
 stays static in Astro; no Astro SSR adapter or Node server is needed.
 `wrangler.jsonc` records the project name, output directory and compatibility

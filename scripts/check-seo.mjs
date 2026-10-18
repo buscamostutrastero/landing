@@ -18,6 +18,7 @@ const origin = new URL(company.url).origin;
 assert.equal(full, markdown, 'Both complete text versions must stay synchronized.');
 assert.ok(index.startsWith(`# ${company.name}\n\n>`), 'llms.txt needs a title and summary.');
 assert.equal((html.match(/<h1\b/g) || []).length, 1, 'The homepage needs one H1.');
+assert.ok(html.match(/<title>(.*?)<\/title>/)?.[1].includes(company.name), 'The homepage title must identify the business.');
 assert.equal(sizes.numberOfItems, 6);
 assert.equal((html.match(/class="storage-card"/g) || []).length, sizes.numberOfItems);
 assert.equal(company.email, 'contacto@buscamostutrastero.com');
@@ -50,6 +51,10 @@ for (const { item } of sizes.itemListElement) {
 assert.ok(robots.includes('User-agent: *\nAllow: /'));
 assert.ok(robots.includes(`Sitemap: ${origin}/sitemap-index.xml`));
 assert.ok(!sitemap.match(/\.(?:txt|md)<\/loc>/), 'Text alternatives must not compete with HTML in the sitemap.');
+const notFound = await read('404.html');
+assert.ok(notFound.includes('content="noindex, follow"'), 'The custom 404 must not be indexed.');
+assert.ok(notFound.includes('href="/"') && notFound.includes('href="/contacto/"'), 'The 404 needs working recovery links.');
+assert.ok(!sitemap.includes(`${origin}/404`), 'The 404 must stay out of the sitemap.');
 for (const path of ['aviso-legal', 'politica-privacidad']) {
   assert.ok(!sitemap.includes(`/${path}/`), 'Incomplete legal templates must stay out of the sitemap.');
   assert.ok((await read(`${path}/index.html`)).includes('content="noindex, follow"'));

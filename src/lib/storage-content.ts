@@ -22,7 +22,7 @@ export const faqs = [
   ['¿Qué información necesitáis para orientarme?', 'Nombre, apellidos, teléfono y correo electrónico. La dirección, el código postal y lo que necesitas guardar son opcionales. Puedes elegir un tamaño o pedir ayuda para decidirlo.'],
 ];
 
-export const title = 'Trasteros en Casablanca, Zaragoza | Próxima apertura';
+export const title = 'Trasteros en Casablanca, Zaragoza | Buscamos tu Trastero';
 export const description = 'Trasteros de 1, 1,5, 2, 2,5, 3 y 3,5 m² en Calle de las Rosas 16, Casablanca, Zaragoza. Próxima apertura. Consulta tamaños y cuéntanos qué necesitas guardar.';
 
 export const illustrationNotice = 'Imágenes generadas con IA para ilustrar cómo organizar tus cosas. La distribución es orientativa y no muestra el aspecto final del local. La capacidad depende de las medidas de tus objetos y de cómo los coloques.';

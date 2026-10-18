@@ -15,7 +15,7 @@ export default defineConfig({
   },
 
   integrations: [react(), sitemap({
-    filter: (page) => !['/aviso-legal/', '/politica-privacidad/'].includes(new URL(page).pathname)
+    filter: (page) => !['/aviso-legal/', '/politica-privacidad/', '/404', '/404/', '/404.html'].includes(new URL(page).pathname)
       && !new URL(page).pathname.startsWith('/api/')
       && !/\.(?:txt|md)$/.test(new URL(page).pathname),
   })]
