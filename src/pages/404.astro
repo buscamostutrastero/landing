@@ -1,10 +1,20 @@
 ---
-import LegalLayout from '../layouts/LegalLayout.astro';
+import '../styles/global.css';
+import '../styles/not-found.css';
+import Seo from '../components/Seo.astro';
+import NotFoundPage from '../components/NotFoundPage';
 ---
 
-<LegalLayout title="Página no encontrada" description="Esta página no existe. Vuelve a Buscamos tu Trastero para consultar los trasteros de próxima apertura en Casablanca, Zaragoza." noindex>
-  <p class="legal-kicker">Error 404</p>
-  <h1>Esta página no existe.</h1>
-  <p>Puede que el enlace haya cambiado o esté mal escrito. Vuelve al inicio para ver los trasteros de Casablanca, Zaragoza.</p>
-  <p>Si necesitas información, <a href="/contacto/">cuéntanos qué quieres guardar</a>.</p>
-</LegalLayout>
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#0b2b45" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <Seo title="Página no encontrada | Buscamos tu Trastero" description="Esta página no existe. Vuelve a Buscamos tu Trastero para consultar los trasteros de próxima apertura en Casablanca, Zaragoza." noindex />
+  </head>
+  <body class="not-found-page">
+    <NotFoundPage />
+  </body>
+</html>

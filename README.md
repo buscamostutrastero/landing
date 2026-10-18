@@ -39,6 +39,9 @@ uses it for missing paths, returning HTTP 404 instead of serving the homepage
 through its default SPA fallback. Keep this file in every deployment. It has
 `noindex, follow` and is excluded from the sitemap. The SEO check verifies its
 presence and recovery links, as well as the homepage's business title.
+The recovery page uses the existing shadcn Button, Card and Separator components
+in `NotFoundPage.tsx`, rendered to static HTML without client hydration. Its
+responsive styles are isolated in `src/styles/not-found.css`.
 
 `functions/api/contacto.ts` is bundled separately by Cloudflare Pages. The build
 stays static in Astro; no Astro SSR adapter or Node server is needed.
