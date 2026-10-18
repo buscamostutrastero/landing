@@ -2,9 +2,10 @@
 import '../styles/global.css';
 import Seo from '../components/Seo.astro';
 import AnalyticsConsent from '../components/AnalyticsConsent.astro';
+import StorageViewer from '../components/StorageViewer.astro';
 import { business } from '../lib/business';
 import { storageSizes, faqs, title, description, updatedLabel, illustrationNotice } from '../lib/storage-content';
-import { ArrowDown, ArrowUpRight, CheckCircle2, ChevronDown, MapPin } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Box, CheckCircle2, ChevronDown, MapPin } from 'lucide-react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { Calendar01Icon, Home04Icon, PackageMoving01Icon, PackageSearch01Icon, Store01Icon, TaskAdd02Icon } from '@hugeicons/core-free-icons';
 
@@ -163,7 +164,9 @@ const structuredData = {
                   <div class="storage-card-copy">
                     <h3><span class="storage-size">{size} <span>m²</span></span><span class="storage-card-title">{title}</span></h3>
                     <p>{description}</p>
+                    <button type="button" class="storage-3d" data-viewer-size={size} aria-label={`Ver en 3D el trastero de ${size} m²`} hidden><Box aria-hidden="true" size={17} strokeWidth={2} />Ver en 3D</button>
                   </div>
+                  <button type="button" class="storage-3d-media" data-viewer-size={size} tabindex="-1" aria-hidden="true" hidden><span><Box aria-hidden="true" size={15} strokeWidth={2} />3D</span></button>
                 </article>
               ))}
             </div>
@@ -236,6 +239,7 @@ const structuredData = {
         <div class="container footer-bottom"><span>© {new Date().getFullYear()} Buscamos tu Trastero</span><span>Todos los derechos reservados.</span></div>
       </footer>
     </div>
+    <StorageViewer />
     <AnalyticsConsent />
   </body>
 </html>

@@ -53,6 +53,50 @@ For a full local preview including the API, run `pnpm build` followed by
 Pages Functions are served by Wrangler, not Astro. No Cloudflare account login
 is required for local tests.
 
+## 3D storage viewer
+
+Each size card on the homepage has a «Ver en 3D» button that opens one shared
+`<dialog>` (`src/components/StorageViewer.astro`). The scope is described in
+`docs/plan-simulador-3d.md`: an approximate illustration, not a capacity tool.
+
+- `src/lib/storage-viewer-data.ts`: graphic width × depth per size (matching
+  its m²) and a 2.20 m graphic height. These are not facility measurements; do
+  not show them as dimensions.
+- `src/scripts/storage-viewer.ts` (~1.8 KB gzip, homepage only): dialog, focus,
+  size selector, contact link (`/contacto/?size=…`) and fallback.
+- `src/scripts/storage-scene.ts`: three.js scene, imported on first open only
+  (~141 KB gzip chunk). It renders on demand and stops when the dialog closes.
+  It reuses one canvas. An orthographic camera keeps a common scale across
+  sizes; near-side walls are cut away instead of fading over the interior.
+  The overview and top-down presets expose their selected state. A fixed
+  1.70 m reference figure is hidden in the top-down view. Procedural materials,
+  soft contact-shadow textures and a detailed open roller need no external assets.
+- `src/scripts/storage-objects.ts`: a fixed-size rack with boxes, a lidded bin,
+  two floor cartons and a suitcase. The same props appear in every room at their
+  original scale. The checked “Mostrar objetos” control hides or shows the example
+  without changing the camera, and preserves the choice across size changes and
+  dialog reopenings. These are illustrative belongings, not included equipment
+  or a capacity recommendation. The floor label appears only in the empty view.
+- `three` is pinned to an exact version because three.js breaks API in minor
+  releases. Vite's 500 kB chunk warning refers to this lazy chunk.
+
+Verified on 18 October 2026 with Chrome (SwiftShader) at 1440, 768 and 390 px:
+three.js is not requested before opening or on `/contacto/`, Escape closes and
+returns focus to the card, five open/close cycles keep one canvas, no draw calls
+happen while closed, and the illustration fallback appears without WebGL.
+A test on a physical phone is still pending.
+
+The visual refinement was checked in the connected Chrome browser at desktop,
+768 px and 390 px, with an additional short-landscape layout check. All six size
+selections keep the title and contact URL synchronized; Escape restores focus.
+The short-screen dialog scrolls its content and keeps the close control visible.
+The production scene chunk with props measured 140,845 bytes gzip and the controller 1,846
+bytes gzip. The built HTML contains no scene preload and the contact page has no
+viewer entry script. Physical-device touch and temperature checks remain pending.
+The example geometry was also checked in Node with three.js bounding boxes:
+all props retain their dimensions, stay within each of the six illustrative
+rooms, and the shelf, floor cartons and suitcase groups do not intersect.
+
 ## Commercial content and discovery
 
 - `src/lib/business.ts`: business identity, contact email and the actual content
