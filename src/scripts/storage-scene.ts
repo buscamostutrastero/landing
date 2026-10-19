@@ -213,7 +213,7 @@ function buildUnit({ size, width, depth }: SceneUnit, height: number) {
     box(opening, 0.012, 0.07, accent, 0, 0.011, front + 0.01),
     box(opening, 0.012, 0.015, dark, 0, 0.01, front - 0.045),
   );
-  const objects = createStorageObjects(width, depth);
+  const objects = createStorageObjects(width, depth, size);
   group.add(objects);
   return { group, walls, objects, label };
 }

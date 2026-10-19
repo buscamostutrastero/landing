@@ -1,9 +1,11 @@
 ---
 import '../styles/storage-viewer.css';
 import { viewerHeight, viewerUnits } from '../lib/storage-viewer-data';
+import { storageExampleForSize } from '../lib/storage-examples.mjs';
 import { ArrowUpRight, Box, Grid2X2, Minus, MoveHorizontal, Plus, RotateCcw, RotateCw, UserRound, X } from 'lucide-react';
 
 const initial = viewerUnits[0]!;
+const initialExample = storageExampleForSize(initial.size);
 ---
 
 <dialog id="storage-viewer" class="viewer" aria-labelledby="viewer-title" aria-describedby="viewer-notice" data-units={JSON.stringify(viewerUnits)} data-height={viewerHeight}>
@@ -32,7 +34,7 @@ const initial = viewerUnits[0]!;
           <input type="checkbox" data-viewer-objects checked aria-describedby="viewer-objects-description" />
           <span>Mostrar objetos</span>
         </label>
-        <p id="viewer-objects-description" class="sr-only">Ejemplo de organización con una estantería, cajas y una maleta. Los mismos objetos, con las mismas medidas, en todos los tamaños.</p>
+        <p id="viewer-objects-description" class="sr-only" data-viewer-description>{initialExample.description}</p>
         <div class="viewer-navigation" role="group" aria-label="Girar y ampliar">
         <button type="button" data-viewer-action="rotate-left" aria-label="Girar a la izquierda" title="Girar a la izquierda"><RotateCcw aria-hidden="true" size={18} /></button>
         <button type="button" data-viewer-action="rotate-right" aria-label="Girar a la derecha" title="Girar a la derecha"><RotateCw aria-hidden="true" size={18} /></button>
@@ -41,7 +43,8 @@ const initial = viewerUnits[0]!;
         <button type="button" data-viewer-action="zoom-out" aria-label="Alejar" title="Alejar"><Minus aria-hidden="true" size={18} /></button>
         </div>
       </div>
-      <p class="viewer-scale"><MoveHorizontal aria-hidden="true" size={16} /><span data-viewer-scale>Mismos objetos, misma escala</span></p>
+      <p class="viewer-scale"><MoveHorizontal aria-hidden="true" size={16} /><span data-viewer-scale>Objetos a escala constante</span></p>
+      <p class="viewer-example-caption" data-viewer-caption>{initialExample.label}</p>
       <p class="viewer-reference"><UserRound aria-hidden="true" size={18} /><span>Figura de referencia<strong>1,70 m</strong></span></p>
       <p class="viewer-hint" data-viewer-hint aria-hidden="true">Arrastra para girar · Pellizca para ampliar</p>
     </div>
@@ -55,7 +58,13 @@ const initial = viewerUnits[0]!;
           ))}
         </div>
       </fieldset>
-      <p id="viewer-notice" class="viewer-notice">Recreación orientativa, con proporciones aproximadas. La estantería y los objetos son un ejemplo de organización.</p>
+      <div class="viewer-information">
+        <p id="viewer-notice" class="viewer-notice">Recreación orientativa, con proporciones aproximadas. Los objetos muestran una posible organización; confirma tus medidas y el acceso antes de elegir.</p>
+        <details class="viewer-object-details" data-viewer-details>
+          <summary>Medidas de los objetos de ejemplo</summary>
+          <ul data-viewer-dimensions>{initialExample.dimensions.map((text) => <li>{text}</li>)}</ul>
+        </details>
+      </div>
       <a class="button button-primary viewer-contact" href={`/contacto/?size=${encodeURIComponent(initial.size)}`} data-viewer-contact><span>Me interesa este tamaño</span><ArrowUpRight aria-hidden="true" size={18} strokeWidth={2.25} /></a>
     </footer>
   </div>

@@ -1,6 +1,6 @@
 # Plan de implementación — Visor 3D de trasteros
 
-**Revisión:** 18 de octubre de 2026
+**Revisión:** 19 de octubre de 2026
 
 **Estado:** implementado; refinamiento visual revisado en navegador, pendiente de prueba en móvil físico
 
@@ -60,12 +60,13 @@ Propuesta de presentación: modal centrado en escritorio y amplio en móvil.
 Un visor compartido evita seis escenas y seis contextos WebGL. No hace falta
 una página nueva `/que-cabe/` ni una URL compartible de objetos.
 
-El visor incluye un ejemplo de organización con una estantería, cajas y una
-maleta. «Mostrar objetos» permite alternar con el recinto vacío. Los objetos
-mantienen las mismas dimensiones y cantidades en los seis tamaños para facilitar
-la comparación; solo cambia su posición respecto a las paredes. Es una composición
-ilustrativa fija, sin cálculo ni veredictos de capacidad. La preferencia se conserva
-al cambiar de tamaño o cerrar y volver a abrir el visor.
+«Mostrar objetos» permite alternar con el recinto vacío. De 1 a 2,5 m² se conserva
+el ejemplo de estantería, cajas y maleta. En 3 m² se representa una bicicleta,
+una cómoda y dos cajas; en 3,5 m², una bicicleta y un sofá de dos plazas. Los objetos
+mantienen sus dimensiones: no se encogen al cambiar de tamaño. El ejemplo elegido
+no declara la capacidad máxima ni el tamaño mínimo para guardar esos objetos.
+La preferencia de mostrar u ocultar objetos se conserva al cambiar de tamaño o
+cerrar y volver a abrir el visor. Las medidas del ejemplo se pueden desplegar.
 
 ## 4. Modelo visual aproximado
 
@@ -113,9 +114,12 @@ base de datos ni hidratación de React.
 | `src/pages/index.astro` | Añadir activadores a las tarjetas e incluir una única instancia del visor. |
 | `src/components/StorageViewer.astro` | Estructura del diálogo, título, selector, controles, aviso y enlace de contacto. |
 | `src/lib/storage-viewer-data.ts` | Proporciones ilustrativas por identificador comercial, altura gráfica y ajustes visuales. |
+| `src/lib/storage-examples.mjs` | Composición por tamaño, descripción accesible y medidas orientativas de los objetos. |
 | `src/scripts/storage-viewer.ts` | Abrir/cerrar, selección, foco, estado de carga, fallback e import diferido de la escena. |
 | `src/scripts/storage-scene.ts` | Construir el recinto, cambiar tamaño y cámara, renderizar y liberar recursos. |
-| `src/scripts/storage-objects.ts` | Modelos procedurales del ejemplo: estantería, cajas y maleta, a escala constante. |
+| `src/scripts/storage-objects.ts` | Selección de composición y modelos de estantería, cajas y maleta, a escala constante. |
+| `src/scripts/storage-reference-objects.mjs` | Bicicleta, cómoda y sofá procedurales, con dimensiones fijas y posiciones por ejemplo. |
+| `tests/storage-viewer.test.mjs` | Comprobar dimensiones de las mallas, contención y separación de los ejemplos de 3 y 3,5 m². |
 | `src/styles/storage-viewer.css` | Estilos aislados con los tokens existentes. |
 | `package.json`, `pnpm-lock.yaml` | Añadir versiones exactas y compatibles de three.js y sus tipos. |
 | `README.md` | Documentar parámetros aproximados, carga diferida y comprobaciones realizadas. |
@@ -148,8 +152,8 @@ Copy propuesto, siguiendo la guía vigente:
 
 - **Acción de tarjeta:** «Ver en 3D»; nombre accesible con el tamaño.
 - **Título:** «Trastero de 2 m²».
-- **Aviso:** «Recreación orientativa. Las proporciones y el aspecto pueden variar.
-  No representa la distribución exacta del local».
+- **Aviso:** «Recreación orientativa, con proporciones aproximadas. Los objetos
+  muestran una posible organización; confirma tus medidas y el acceso antes de elegir».
 - **Carga:** «Preparando la vista 3D…».
 - **Fallo:** «No se ha podido mostrar la vista 3D. Puedes consultar la ilustración
   de este tamaño o pedirnos información».
@@ -201,3 +205,34 @@ con el primer prototipo y el acabado visual elegido.
 No quedan preguntas sobre el local que bloqueen este alcance. Las proporciones
 y el estilo se pueden ajustar sobre el prototipo sin convertir el visor en una
 herramienta de medición o de validación de capacidad.
+
+## 8. Referencias dimensionales de bicicletas y muebles — 19 de octubre de 2026
+
+Se representan objetos genéricos reconocibles, sin marcas ni logotipos. No existe
+una única medida que represente todas las bicicletas o todos los sofás. Estas
+son las envolventes de referencia elegidas para el dibujo, no un catálogo de
+objetos garantizados ni medidas de la instalación.
+
+| Objeto | Dimensiones del modelo | Referencia |
+|---|---|---|
+| Bicicleta adulta | 180 cm de largo × 62 cm de manillar × 110 cm de alto | Anchura de manillar de la ELOPS 500 LD; largo y alto representativos elegidos dentro de los rangos de la guía QGTM, figura C.15. No se atribuye la envolvente completa a una talla concreta de ELOPS. |
+| Cómoda de tres cajones | 80 × 48 × 78 cm, ancho × fondo × alto | Envolvente de MALM de tres cajones en la guía dimensional de IKEA. |
+| Sofá de dos plazas | 190 × 95 × 83 cm, ancho × fondo × alto | Envolvente de KIVIK de dos plazas en la guía dimensional de IKEA. |
+
+Fuentes primarias consultadas para dimensiones, no para precios o disponibilidad:
+
+- [Decathlon — ELOPS 500 LD: manillar de 62 cm](https://www.decathlon.es/es/p/bicicleta-urbana-larga-distancia-aluminio-cuadro-alto-elops-500-ld-azul-grisaceo/305016/c33m8526940).
+- [Queensland Transport and Main Roads — QGTM Part 6, figura C.15](https://www.tmr.qld.gov.au/_/media/busind/techstdpubs/traffic-management/qgtm/qgtm-pt-6.pdf?extension=pdf&hash=1E765215E632423E7553E324C477C298&rev=1137ba94066140fc90d9b7726c535d3e&sc_lang=en&size=2849248).
+- [IKEA — guía MALM, página 3](https://www.ikea.com/mx/es/files/pdf/01/e5/01e53626/malm_buying_guide_fy23_march_correcion.pdf#page=3).
+- [IKEA — guía KIVIK, página 4](https://www.ikea.com/es/en/files/pdf/30/81/3081fb99/kivik-19-hfb-01-esp_r-1-_004.pdf#page=4).
+
+La bici se apoya sobre las dos ruedas, con el manillar completo y sin anclajes
+al muro. El sofá permanece sobre sus patas, con su lado de 190 cm paralelo al
+fondo del recinto. La cómoda también permanece vertical. No se desmontan muebles,
+se estrechan manillares ni se colocan piezas de pie para hacerlas encajar.
+
+Las composiciones son posiciones fijas por ejemplo, con separación entre sus
+envolventes. Los tests de `tests/storage-viewer.test.mjs` comprueban las dimensiones
+reales de las mallas, el apoyo de las ruedas, la escala unitaria, la contención
+dentro del modelo y la ausencia de solapes. Son comprobaciones del dibujo; no
+certifican maniobras de entrada, comodidad de acceso, apilado ni resistencia.

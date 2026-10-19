@@ -1,5 +1,7 @@
 import { BoxGeometry, CylinderGeometry, Group, Mesh, MeshStandardMaterial, type Material } from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { storageExampleForSize } from '../lib/storage-examples.mjs';
+import { createLargeStorageExample } from './storage-reference-objects.mjs';
 
 function block(width: number, height: number, depth: number, material: Material, x: number, y: number, z: number, radius = 0) {
   const geometry = radius
@@ -10,8 +12,10 @@ function block(width: number, height: number, depth: number, material: Material,
   return mesh;
 }
 
-/** Fixed-size illustrative props, shared by every room size; not a capacity calculation. */
-export function createStorageObjects(width: number, depth: number) {
+/** Fixed-size illustrative props; larger rooms use bicycle and furniture examples. */
+export function createStorageObjects(width: number, depth: number, size = '1') {
+  const example = storageExampleForSize(size);
+  if (example.id !== 'boxes') return createLargeStorageExample(width, depth, example.id);
   const contents = new Group();
   contents.name = 'storage-example';
   const steel = new MeshStandardMaterial({ color: 0x687f85, roughness: 0.5, metalness: 0.4 });

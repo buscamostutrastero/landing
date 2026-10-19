@@ -1,4 +1,5 @@
 import type { StorageScene, ViewerView } from './storage-scene';
+import { storageExampleForSize } from '../lib/storage-examples.mjs';
 
 type Unit = { size: string; image: string; width: number; depth: number };
 
@@ -16,6 +17,10 @@ if (dialog && typeof dialog.showModal === 'function') {
   const stage = dialog.querySelector<HTMLElement>('[data-viewer-stage]')!;
   const objects = dialog.querySelector<HTMLInputElement>('[data-viewer-objects]')!;
   const scale = dialog.querySelector<HTMLElement>('[data-viewer-scale]')!;
+  const caption = dialog.querySelector<HTMLElement>('[data-viewer-caption]')!;
+  const description = dialog.querySelector<HTMLElement>('[data-viewer-description]')!;
+  const details = dialog.querySelector<HTMLDetailsElement>('[data-viewer-details]')!;
+  const dimensions = dialog.querySelector<HTMLUListElement>('[data-viewer-dimensions]')!;
   const viewButtons = [...controls.querySelectorAll<HTMLButtonElement>('[aria-pressed]')];
   const contact = dialog.querySelector<HTMLAnchorElement>('[data-viewer-contact]')!;
   const radios = [...dialog.querySelectorAll<HTMLInputElement>('[name="viewer-size"]')];
@@ -27,12 +32,27 @@ if (dialog && typeof dialog.showModal === 'function') {
   let loadingScene: Promise<void> | null = null;
   let hintSeen = false;
 
+  const syncExample = () => {
+    const example = storageExampleForSize(selected.size);
+    caption.textContent = example.label;
+    caption.hidden = !objects.checked;
+    details.hidden = !objects.checked || stage.dataset.state !== 'ready';
+    description.textContent = objects.checked ? example.description : 'Vista del trastero vacío.';
+    scale.textContent = objects.checked ? 'Objetos a escala constante' : 'Misma escala entre tamaños';
+    dimensions.replaceChildren(...example.dimensions.map((text) => {
+      const item = document.createElement('li');
+      item.textContent = text;
+      return item;
+    }));
+  };
+
   const setState = (state: 'loading' | 'ready' | 'failed') => {
     stage.dataset.state = state;
     loading.hidden = state !== 'loading';
     fallback.hidden = state !== 'failed';
     hint.hidden = state !== 'ready' || hintSeen;
     canvasHost.hidden = controls.hidden = state === 'failed';
+    details.hidden = state !== 'ready' || !objects.checked;
     controls.querySelectorAll<HTMLButtonElement | HTMLInputElement>('button, input').forEach((control) => { control.disabled = state !== 'ready'; });
   };
 
@@ -57,6 +77,7 @@ if (dialog && typeof dialog.showModal === 'function') {
     fallbackImage.src = `/images/sizes/${selected.image}-480.webp`;
     radios.forEach((radio) => { radio.checked = radio.value === selected.size; });
     scene?.setUnit(selected);
+    syncExample();
   };
 
   const ensureScene = () => {
@@ -95,7 +116,7 @@ if (dialog && typeof dialog.showModal === 'function') {
   radios.forEach((radio) => radio.addEventListener('change', () => select(radio.value)));
   objects.addEventListener('change', () => {
     scene?.setObjectsVisible(objects.checked);
-    scale.textContent = objects.checked ? 'Mismos objetos, misma escala' : 'Misma escala entre tamaños';
+    syncExample();
   });
   dialog.querySelector('[data-viewer-close]')!.addEventListener('click', () => dialog.close());
   // Clic en el fondo oscuro: cerrar.
